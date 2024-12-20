@@ -25,16 +25,15 @@
 
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#462ad8" Offset="0"/>
-                    <GradientStop Color="#da34ae" Offset="0.75"/>
-                    <GradientStop Color="#8a16c1" Offset="1"/>
+                    <GradientStop Color="#0E79B2" Offset="0"/>
+                    <GradientStop Color="#386C0B" Offset="0.5"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="#060531" Offset="0"/>
-                    <GradientStop Color="#1b1448" Offset="0.75"/>
+                    <GradientStop Color="#213A0B" Offset="0"/>
+                    <GradientStop Color="#1C1C1C" Offset="0.5"/>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -53,7 +52,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Text="ADMIN VIEW"
-                               Foreground="DarkGray"
+                               Foreground="White"
                                FontSize="14"
                                FontFamily="Motserrat"
                                Grid.Column="0"
@@ -65,23 +64,24 @@
                             Content="-"
                             Foreground="White"
                             FontSize="16"
+                            FontWeight="Medium"
                             FontFamily="Monserrat"
                             Cursor="Hand"
                             Grid.Column="1"
                             Click="btnMinimize_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28aeed"/>
+                                <Setter Property="Background" Value="#509A10"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278bef"/>
+                                        <Setter Property="Background" Value="#386C0B"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
+                                <Border Width="20" Height="20"
                                         CornerRadius="9"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter HorizontalAlignment="Center"
@@ -96,23 +96,24 @@
                             Content="X"
                             Foreground="White"
                             FontSize="12"
+                            FontWeight="Medium"
                             FontFamily="Monserrat"
                             Cursor="Hand"
                             Grid.Column="2"
                             Click="btnClose_Click">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#da34ae"/>
+                                <Setter Property="Background" Value="#EF7B45"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#c62dae"/>
+                                        <Setter Property="Background" Value="#FA5B11"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
+                                <Border Width="20" Height="20"
                                         CornerRadius="9"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter HorizontalAlignment="Center" 
