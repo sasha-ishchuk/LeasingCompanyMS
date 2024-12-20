@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using LeasingCompanyMS.Model;
+using LeasingCompanyMS.View;
 
 namespace LeasingCompanyMS
 {
@@ -25,8 +26,14 @@ namespace LeasingCompanyMS
                         var role = userRepository.GetRoleByUsername(identity.Name);
                         if (role == "admin")
                         {
-                            var mainWindow = new MainWindow();
-                            mainWindow.Show();
+                            var adminView = new AdminView();
+                            adminView.Show();
+                            loginView.Close();
+                        }
+                        else if (role == "user")
+                        {
+                            var userView = new UserView();
+                            userView.Show();
                             loginView.Close();
                         }
                         else
