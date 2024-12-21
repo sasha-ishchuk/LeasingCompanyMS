@@ -5,127 +5,133 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeasingCompanyMS.View"
         mc:Ignorable="d"
-        Title="UserView" Height="500" Width="800"
+        Title="UserView" Height="700" Width="1300"
         WindowStyle="None"
-        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        AllowsTransparency="True">
 
-    <Border CornerRadius="12">
+    <Border CornerRadius="10" 
+    BorderThickness="2">
 
-        <Border.Background>
-            <ImageBrush ImageSource="/Images/back-image.jpg"/>
-        </Border.Background>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource borderColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource borderColor2}" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
 
-        <Border CornerRadius="10" 
-                BorderThickness="2"
-                Opacity="0.9">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!-- Nav -->
+                <ColumnDefinition Width="250"/>
+                <!-- Content -->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Border.BorderBrush>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#0E79B2" Offset="0"/>
-                    <GradientStop Color="#386C0B" Offset="0.75"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
+            <!-- Nav -->
+            <Border CornerRadius="10,0,0,10"
+                Grid.Column="0">
 
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="#213A0B" Offset="0"/>
-                    <GradientStop Color="#1C1C1C" Offset="0.5"/>
-                </LinearGradientBrush>
-            </Border.Background>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource backColor2}" Offset="0"/>
+                        <GradientStop Color="{StaticResource backColor3}" Offset="0.7"/>
+                    </LinearGradientBrush>
+                </Border.Background>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                            Height="35"
+                            Margin="15,25,0,40">
 
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="5"/>
-                    </Grid.ColumnDefinitions>
+                        <TextBlock Text="Leasing MS - User"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="20"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
 
-                    <TextBlock Text="USER VIEW"
-                               Foreground="White"
-                               FontSize="14"
-                               FontFamily="Motserrat"
-                               Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Margin="10,0,0,0"/>
+                    <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource borderColor2}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Manage Cars"
+                                       Margin="15,0,0,0"
+                                       Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
 
-                    <Button x:Name="btnMinimize"
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="White"
-                            FontSize="16"
-                            FontWeight="Medium"
-                            FontFamily="Monserrat"
-                            Cursor="Hand"
-                            Grid.Column="1"
-                            Click="btnMinimize_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#509A10"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#386C0B"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="20" Height="20"
-                                CornerRadius="9"
-                                Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource borderColor2}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Manage Payments" 
+                                       Margin="15,0,0,0"
+                                       Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
 
-                    <Button x:Name="btnClose"
-                            BorderThickness="0"
-                            Content="X"
-                            Foreground="White"
-                            FontSize="12"
-                            FontWeight="Medium"
-                            FontFamily="Monserrat"
-                            Cursor="Hand"
-                            Grid.Column="2"
-                            Click="btnClose_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#EF7B45"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FA5B11"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                    CornerRadius="9"
-                                    Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                </StackPanel>
+
+            </Border>
+
+            <!-- Content -->
+            <Border CornerRadius="0,10,10,0"
+                Grid.Column="1">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0.7">
+                        <GradientStop Color="{StaticResource backColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource backColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Click="btnClose_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="X"
+                                       Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Click="btnMaximize_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="[ ]"
+                                       Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnMinimize"
+                                Style="{StaticResource controlButton}"
+                                Click="btnMinimize_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="-"
+                                       Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
                 </Grid>
-            </Grid>
 
-        </Border>
+            </Border>
 
+        </Grid>
     </Border>
 </Window>

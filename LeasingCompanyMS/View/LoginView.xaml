@@ -7,13 +7,11 @@
         xmlns:vm="clr-namespace:LeasingCompanyMS.ViewModel" 
         xmlns:customcontrols="clr-namespace:LeasingCompanyMS.CustomControls"
         mc:Ignorable="d"
-        Title="LoginView" Height="550" Width="800"
+        Title="LoginView" Height="700" Width="1300"
         WindowStyle="None"
-        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True"
-        MouseDown="Window_MouseDown">
+        AllowsTransparency="True">
 
     <Window.DataContext>
         <vm:LoginViewModel/>
@@ -41,117 +39,87 @@
 
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#0E79B2" Offset="0"/>
-                    <GradientStop Color="#386C0B" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource borderColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource borderColor2}" Offset="0.75"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,1">
-                    <GradientStop Color="#213A0B" Offset="0"/>
-                    <GradientStop Color="#1C1C1C" Offset="0.55"/>
+                    <GradientStop Color="{StaticResource backColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource backColor2}" Offset="0.5"/>
                 </LinearGradientBrush>
             </Border.Background>
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="5"/>
-                    </Grid.ColumnDefinitions>
 
                     <TextBlock Text="LOG IN"
-                               Foreground="White"
+                               Foreground="{StaticResource titleColor1}"
                                FontSize="14"
                                FontFamily="Motserrat"
                                Grid.Column="0"
                                VerticalAlignment="Center"
-                               Margin="10,0,0,0"/>
+                               Margin="10,5,0,0"/>
 
-                    <Button x:Name="btnMinimize"
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="White"
-                            FontSize="16"
-                            FontWeight="Medium"
-                            FontFamily="Monserrat"
-                            Cursor="Hand"
-                            Grid.Column="1"
-                            Click="btnMinimize_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#509A10"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#386C0B"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="20" Height="20"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" 
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
 
-                    <Button x:Name="btnClose"
-                            BorderThickness="0"
-                            Content="X"
-                            Foreground="White"
-                            FontSize="12"
-                            FontWeight="Medium"
-                            FontFamily="Monserrat"
-                            Cursor="Hand"
-                            Grid.Column="2"
-                            Click="btnClose_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#EF7B45"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FA5B11"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="20" Height="20"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" 
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Click="btnClose_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="X"
+                                           Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Click="btnMaximize_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="[ ]"
+                                           Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+                        
+                        <Button x:Name="btnMinimize"
+                                Style="{StaticResource controlButton}"
+                                Click="btnMinimize_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="-"
+                                           Style="{StaticResource controlButtonText}"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
                 </Grid>
 
                 <StackPanel Width="260"
                             Grid.Row="1"
                             Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
                             Margin="0,100,0,0">
                     <TextBlock Text="Leasing MS"
-                               Foreground="White"
+                               Foreground="{StaticResource titleColor1}"
                                FontSize="32"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Innovative Leasing Solutions That Drive Your Business and Lifestyle Forward."
-                               Foreground="LightGray"
+                               Foreground="{StaticResource titleColor2}"
                                FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -160,7 +128,7 @@
                                Margin="0,5,0,0"/>
                     
                     <TextBlock Text="Username"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource titleColor3}"
                                FontSize="16"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
@@ -171,9 +139,9 @@
                              FontSize="14"
                              FontWeight="Medium"
                              FontFamily="Montserrat"                            
-                             Foreground="White"
-                             CaretBrush="LightGray"
-                             BorderBrush="DarkGray"
+                             Foreground="{StaticResource titleColor1}"
+                             CaretBrush="{StaticResource titleColor2}"
+                             BorderBrush="{StaticResource titleColor3}"
                              BorderThickness="0,0,0,2"
                              Height="28"
                              VerticalContentAlignment="Center"
@@ -187,7 +155,7 @@
                     </TextBox>
                     
                     <TextBlock Text="Password"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource titleColor3}"
                                FontSize="16"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
@@ -199,7 +167,7 @@
                     </customcontrols:CustomPasswordBox>
 
                     <TextBlock Text="{Binding ErrorMessage}"
-                               Foreground="#FA5B11"
+                               Foreground="{StaticResource errorColor}"
                                FontSize="16"
                                FontWeight="Medium"
                                FontFamily="Montserrat"                             
@@ -241,12 +209,12 @@
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
                         <TextBlock Text="Forgot Password?"
-                               Foreground="DarkGray"
+                               Foreground="{StaticResource titleColor3}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
                         <TextBlock Text="Reset"
-                               Foreground="White"
+                               Foreground="{StaticResource titleColor1}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"

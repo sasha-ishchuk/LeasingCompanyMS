@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Background -->
+    <Color x:Key="backColor1">#213A0B</Color>
+    <Color x:Key="backColor2">#1C1C1C</Color>
+    <Color x:Key="backColor3">#161515</Color>
+    
+    <!-- Window Border -->
+    <Color x:Key="borderColor1">#0E79B2</Color>
+    <Color x:Key="borderColor2">#386C0B</Color>
+
+    <!-- Nav Panel -->
+    <SolidColorBrush x:Key="panelColor" Color="#1C1C1C"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="#213A0B"/>
+    <SolidColorBrush x:Key="panelActiveColor" Color="#386C0B"/>
+
+    <!-- Text Colors -->
+    <SolidColorBrush x:Key="titleColor1" Color="White"/>
+    <SolidColorBrush x:Key="titleColor2" Color="LightGray"/>
+    <SolidColorBrush x:Key="titleColor3" Color="DarkGray"/>
+
+    <!-- Other Colors -->
+    <SolidColorBrush x:Key="errorColor" Color="#FA5B11"/>
+
+</ResourceDictionary>
