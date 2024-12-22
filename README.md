@@ -5,6 +5,7 @@
 #### Tech specifications:
 * Target framework: .NET 8.0
 * WPF (Windows Presentation Foundatition)
+* Test framework: MSTest
 
 #### Other application info:
 * Output type: Windows Application
