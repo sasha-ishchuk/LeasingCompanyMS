@@ -5,7 +5,7 @@ using System.Text.Json;
 using LeasingCompanyMS.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LeasingCompanyMSTest
+namespace LeasingCompanyMSTest.Model
 {
     [TestClass]
     public class UserRepositoryTest
