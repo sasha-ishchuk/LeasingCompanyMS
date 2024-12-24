@@ -1,15 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
 using LeasingCompanyMS.Model;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LeasingCompanyMS.Utils;
+using Moq;
 
 namespace LeasingCompanyMSTest.Model
 {
     [TestClass]
     public class UserRepositoryTest
     {
+        private readonly Mock<JsonUtils> _jsonUtilsMock = new();
         private readonly UserRepository _userRepository = new();
 
         [TestMethod]
@@ -73,7 +71,7 @@ namespace LeasingCompanyMSTest.Model
         }
 
         [TestMethod]
-        public void GetAll_ReturnsAllUsers()
+        public void GetAll_WhenReadUsersFromJson_ReturnsAllUsers()
         {
             // given/when
             List<User> users = _userRepository.GetAll();

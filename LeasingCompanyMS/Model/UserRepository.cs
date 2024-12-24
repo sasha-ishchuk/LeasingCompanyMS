@@ -5,11 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using LeasingCompanyMS.Utils;
 
 namespace LeasingCompanyMS.Model
 {
     public class UserRepository : IUserRepository
     {
+        private readonly JsonUtils _jsonUtils;
+
+        public UserRepository()
+        {
+            _jsonUtils = new JsonUtils();
+        }
+
         public bool AuthenticateUser(string username, string password)
         {
             List<User> users = GetAll();
@@ -51,7 +59,8 @@ namespace LeasingCompanyMS.Model
 
         public List<User> GetAll()
         {
-            List<User> users = ReadUsersFromJson();
+            string jsonString = _jsonUtils.ReadUsersFromJson(GetPathToUsersJson());
+            List<User> users = _jsonUtils.MapJsonStringToUserList(jsonString);
             if (users.Count == 0)
             {
                 throw new Exception("No users found");
@@ -59,17 +68,14 @@ namespace LeasingCompanyMS.Model
             return users;
         }
 
-        private List<User> ReadUsersFromJson()
+        private string GetPathToUsersJson()
         {
             string? projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             if (projectPath == null)
             {
                 throw new Exception("Project path not found");
             }
-            string jsonFilePath = Path.Combine(projectPath, "Json", "users.json");
-            string jsonData = File.ReadAllText(jsonFilePath);
-            List<User>? users = JsonSerializer.Deserialize<List<User>>(jsonData);
-            return users ?? [];
+            return Path.Combine(projectPath, "Json", "users.json");
         }
     }
 }
