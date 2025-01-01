@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LeasingCompanyMS.Pages;
 
 namespace LeasingCompanyMS.View
 {
@@ -24,7 +25,8 @@ namespace LeasingCompanyMS.View
         // to use events/methods from OS
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-
+        private Page manageCars = new ManageCarsPage();
+        private Page managePayments = new ManagePaymentsPage();
         public UserView()
         {
             InitializeComponent();
@@ -54,6 +56,21 @@ namespace LeasingCompanyMS.View
         private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        }
+
+        private void openPage(Page page)
+        {
+            frame.Content = page; 
+        }
+
+        private void openManageCars(object sender, RoutedEventArgs e)
+        {
+            openPage(manageCars);
+        }
+
+        private void openManagePayments(object sender, RoutedEventArgs e)
+        {
+            openPage(managePayments);
         }
     }
 }
