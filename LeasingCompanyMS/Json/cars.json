@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "Registration": "KWA5516",
+        "Mark": "Mazda",
+        "Model": "CX-5",
+        "Year": 2016,
+        "VIN": "BF9MR42V8EBR67858"
+    },
+    {
+        "id": 1,
+        "Registration": "DWR7351",
+        "Mark": "Audi",
+        "Model": "Q8",
+        "Year": 2019,
+        "VIN": "LPA0LMHJ02JFW6040"
+    },
+    {
+        "id": 2,
+        "Registration": "WA04474",
+        "Mark": "BMW",
+        "Model": "M5",
+        "Year": 2020,
+        "VIN": "PM1M6AL60YHKB3977"
+    },
+    {
+        "id": 3,
+        "Registration": "KMI3975",
+        "Mark": "Maserati",
+        "Model": "Ghibli",
+        "Year": 2019,
+        "VIN": "LE4KJUUF66YDM9280"
+    },
+    {
+        "id": 4,
+        "Registration": "KR984AU",
+        "Mark": "Volvo",
+        "Model": "XC90",
+        "Year": 2023,
+        "VIN": "6MMWZCBJ1U0S99940"
+    }
+]
