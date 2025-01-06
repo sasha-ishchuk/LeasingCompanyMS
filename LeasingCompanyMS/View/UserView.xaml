@@ -131,8 +131,7 @@
                         </Button>
 
                     </StackPanel>
-                    <Frame Grid.Row="2" Opacity="0.3" Name="frame">
-                    </Frame>
+                    <Frame Grid.Row="2" Name="frame" Background="#4C979797"/>
                 </Grid>
 
             </Border>

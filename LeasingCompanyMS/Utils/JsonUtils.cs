@@ -8,7 +8,7 @@ namespace LeasingCompanyMS.Utils
 {
     public class JsonUtils
     {
-        public virtual string ReadUsersFromJson(string jsonFilePath)
+        public virtual string ReadFromJson(string jsonFilePath)
         {
             if (string.IsNullOrEmpty(jsonFilePath))
             {
@@ -21,6 +21,12 @@ namespace LeasingCompanyMS.Utils
         {
             List<User>? users = JsonSerializer.Deserialize<List<User>>(jsonString);
             return users ?? new List<User>();
+        }
+
+        public List<Car> MapJsonStringToCarList(string jsonString)
+        {
+            List<Car>? cars = JsonSerializer.Deserialize<List<Car>>(jsonString);
+            return cars ?? new List<Car>();
         }
     }
 }

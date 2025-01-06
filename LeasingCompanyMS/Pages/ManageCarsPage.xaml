@@ -6,4 +6,7 @@
       xmlns:local="clr-namespace:LeasingCompanyMS.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManageCarsPage"/>
+      Title="ManageCarsPage"
+      ShowsNavigationUI="False">
+    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="100,0,100,0" Height="398" VerticalAlignment="Center" Name="carsDataGrid"/>
+</Page>

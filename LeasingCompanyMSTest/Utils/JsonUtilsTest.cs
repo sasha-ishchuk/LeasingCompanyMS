@@ -21,7 +21,7 @@ namespace LeasingCompanyMSTest.Utils
         public void ReadUsersFromJson_WhenFileExists_ThenReturnsJsonString()
         {
             // given
-            string result = _jsonUtils.ReadUsersFromJson(_jsonFilePath);
+            string result = _jsonUtils.ReadFromJson(_jsonFilePath);
             // when/then
             Assert.IsNotNull(result);
             string expectedJson = File.ReadAllText(_jsonFilePath);
@@ -34,14 +34,14 @@ namespace LeasingCompanyMSTest.Utils
             // given
             string nonExistentFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "nonexistent.json");
             // when/then
-            Assert.ThrowsException<FileNotFoundException>(() => _jsonUtils.ReadUsersFromJson(nonExistentFilePath));
+            Assert.ThrowsException<FileNotFoundException>(() => _jsonUtils.ReadFromJson(nonExistentFilePath));
         }
 
         [TestMethod]
         public void ReadUsersFromJson_WhenFilePathIsNull_ThenThrowsArgumentNullException()
         {
             // given/when/then
-            Assert.ThrowsException<ArgumentNullException>(() => _jsonUtils.ReadUsersFromJson(null));
+            Assert.ThrowsException<ArgumentNullException>(() => _jsonUtils.ReadFromJson(null));
         }
 
         [TestMethod]
