@@ -59,7 +59,7 @@ namespace LeasingCompanyMS.Model
 
         public List<User> GetAll()
         {
-            string jsonString = _jsonUtils.ReadUsersFromJson(GetPathToUsersJson());
+            string jsonString = _jsonUtils.ReadFromJson(GetPathToUsersJson());
             List<User> users = _jsonUtils.MapJsonStringToUserList(jsonString);
             if (users.Count == 0)
             {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LeasingCompanyMS.Model;
 
 namespace LeasingCompanyMS.Pages
 {
@@ -20,9 +21,19 @@ namespace LeasingCompanyMS.Pages
     /// </summary>
     public partial class ManageCarsPage : Page
     {
+        private IEnumerable<String> cars;
+        private CarsRepository carsRepository = new CarsRepository();
+
         public ManageCarsPage()
         {
             InitializeComponent();
+            PopulateDataGrid();
+        }
+
+        private void PopulateDataGrid()
+        {
+            var cars = carsRepository.GetAll();
+            carsDataGrid.ItemsSource = cars;
         }
     }
 }
