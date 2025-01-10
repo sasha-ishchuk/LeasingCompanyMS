@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LeasingCompanyMS.Pages;
 
 namespace LeasingCompanyMS.View
 {
@@ -21,6 +22,8 @@ namespace LeasingCompanyMS.View
     /// </summary>
     public partial class AdminView : Window
     {
+        private Page manageCars = new ManageCarsPage();
+
         // to use events/methods from OS
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
@@ -55,6 +58,16 @@ namespace LeasingCompanyMS.View
         private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        }
+
+        private void openPage(Page page)
+        {
+            frame.Content = page;
+        }
+
+        private void openManageCars(object sender, RoutedEventArgs e)
+        {
+            openPage(manageCars);
         }
     }
 }

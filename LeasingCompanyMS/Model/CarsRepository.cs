@@ -8,17 +8,12 @@ using LeasingCompanyMS.Utils;
 
 namespace LeasingCompanyMS.Model
 {
-    public class CarsRepository
+    public static class CarsRepository
     {
-        private readonly JsonUtils _jsonUtils;
+        private static readonly JsonUtils _jsonUtils = new JsonUtils();
 
-        public CarsRepository()
-        {
-            _jsonUtils = new JsonUtils();
 
-        }
-
-        public List<Car> GetAll()
+        public static List<Car> GetAll()
         {
             string jsonString = _jsonUtils.ReadFromJson(GetPathToCarsJson());
             List<Car> cars = _jsonUtils.MapJsonStringToCarList(jsonString);
@@ -29,7 +24,7 @@ namespace LeasingCompanyMS.Model
             return cars;
         }
 
-        private string GetPathToCarsJson()
+        private static string GetPathToCarsJson()
         {
             string? projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             if (projectPath == null)

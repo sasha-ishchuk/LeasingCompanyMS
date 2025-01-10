@@ -55,9 +55,9 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                              Tag="{StaticResource borderColor2}"
-                             Click="openManageCars">
+                                 Click="openBrowseCars">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Manage Cars"
+                            <TextBlock Text="Browse Cars"
                                        Margin="15,0,0,0"
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
@@ -65,8 +65,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                             Tag="{StaticResource borderColor2}"
-                             Click="openManagePayments">
+                             Tag="{StaticResource borderColor2}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Manage Payments" 
                                        Margin="15,0,0,0"

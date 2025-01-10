@@ -17,23 +17,27 @@ using LeasingCompanyMS.Model;
 namespace LeasingCompanyMS.Pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy ManageCarsPage.xaml
+    /// Logika interakcji dla klasy BrowseCarsPage.xaml
     /// </summary>
-    public partial class ManageCarsPage : Page
+    public partial class BrowseCarsPage : Page
     {
-        private IEnumerable<String> cars;
-
-        public ManageCarsPage()
+        public BrowseCarsPage()
         {
             InitializeComponent();
-            PopulateDataGrid();
+            LoadData();
         }
 
-        private void PopulateDataGrid()
+        private void LoadData()
         {
-            var cars = CarsRepository.GetAll();
-            carsDataGrid.ItemsSource = cars;
-            //todo bind data so it can be changed
+            carsComboBox.ItemsSource = CarsRepository.GetAll();
+        }
+
+        private void CarsComboBoxValueChanged(object sender, EventArgs e)
+        {
+            carInfoBox.Visibility = Visibility.Visible;
+            var car = (Car) carsComboBox.SelectedItem;
+            registrationValue.Content = car.Registration;
+            vinValue.Content = car.VIN;
         }
     }
 }

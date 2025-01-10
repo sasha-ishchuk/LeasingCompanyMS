@@ -13,5 +13,10 @@ namespace LeasingCompanyMS.Model
         public string Model { get; set; }
         public int Year { get; set; }
         public string VIN {  get; set; }
+
+        public override string ToString()
+        {
+            return String.Join(" ", Year, Mark, Model);
+        }
     }
 }
