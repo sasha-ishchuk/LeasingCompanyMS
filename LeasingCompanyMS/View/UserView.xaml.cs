@@ -25,7 +25,8 @@ namespace LeasingCompanyMS.View
         // to use events/methods from OS
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-        private Page manageCars = new ManageCarsPage();
+        
+        private Page browseCars = new BrowseCarsPage();
         private Page managePayments = new ManagePaymentsPage();
         public UserView()
         {
@@ -63,14 +64,14 @@ namespace LeasingCompanyMS.View
             frame.Content = page; 
         }
 
-        private void openManageCars(object sender, RoutedEventArgs e)
-        {
-            openPage(manageCars);
-        }
-
         private void openManagePayments(object sender, RoutedEventArgs e)
         {
             openPage(managePayments);
+        }
+
+        private void openBrowseCars(object sender, RoutedEventArgs e)
+        {
+            openPage(browseCars);
         }
     }
 }

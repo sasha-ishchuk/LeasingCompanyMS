@@ -54,7 +54,8 @@
                     </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource borderColor2}">
+                                 Tag="{StaticResource borderColor2}"
+                                 Click="openManageCars">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Manage Cars"
                                        Margin="15,0,0,0"
@@ -145,6 +146,7 @@
                         </Button>
                         
                     </StackPanel>
+                    <Frame Grid.Row="2" Name="frame" Background="#4C979797"/>
                 </Grid>
 
             </Border>
