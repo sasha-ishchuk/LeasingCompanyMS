@@ -33,7 +33,6 @@ namespace LeasingCompanyMS.Pages
         {
             var cars = CarsRepository.GetAll();
             carsDataGrid.ItemsSource = cars;
-            //todo bind data so it can be changed
         }
     }
 }

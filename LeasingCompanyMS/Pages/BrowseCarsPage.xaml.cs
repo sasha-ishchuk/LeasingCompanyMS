@@ -29,7 +29,7 @@ namespace LeasingCompanyMS.Pages
 
         private void LoadData()
         {
-            carsComboBox.ItemsSource = CarsRepository.GetAll();
+            carsComboBox.ItemsSource = CarsRepository.GetAvailableCars();   //todo possibly need to refresh
         }
 
         private void CarsComboBoxValueChanged(object sender, EventArgs e)
