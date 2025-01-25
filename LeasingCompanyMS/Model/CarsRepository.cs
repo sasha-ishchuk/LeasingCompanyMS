@@ -33,5 +33,11 @@ namespace LeasingCompanyMS.Model
             }
             return Path.Combine(projectPath, "Json", "cars.json");
         }
+
+        public static List<Car> GetAvailableCars()
+        {
+            var currentlyLeasedCarIds =  LeasingsRepository.getActiveLeasings().Select(x => x.CarId).ToHashSet();
+            return GetAll().Where(car => !currentlyLeasedCarIds.Contains(car.id)).ToList();
+        }
     }
 }

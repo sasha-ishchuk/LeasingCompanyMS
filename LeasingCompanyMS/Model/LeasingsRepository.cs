@@ -11,15 +11,15 @@ namespace LeasingCompanyMS.Model
     public static class LeasingsRepository
     {
         private static readonly JsonUtils _jsonUtils = new JsonUtils();
+        private static List<Leasing> leasings;
 
 
         public static List<Leasing> GetAll()
         {
-            string jsonString = _jsonUtils.ReadFromJson(GetPathToLeasingsJson());
-            List<Leasing> leasings = _jsonUtils.MapJsonStringToLeasingList(jsonString);
-            if (leasings.Count == 0)
+            if (leasings == null)
             {
-                return new List<Leasing>();
+                string jsonString = _jsonUtils.ReadFromJson(GetPathToLeasingsJson());
+                leasings = _jsonUtils.MapJsonStringToLeasingList(jsonString);
             }
             return leasings;
         }
@@ -32,6 +32,21 @@ namespace LeasingCompanyMS.Model
                 throw new Exception("Project path not found");
             }
             return Path.Combine(projectPath, "Json", "leasings.json");
+        }
+
+        public static List<Leasing> getUserLeasings(string userId)
+        {
+            return GetAll().Where(l => l.User ==  userId).ToList();
+        }
+
+        public static List<Leasing> getActiveUserLeasings(string userId)
+        {
+            return getUserLeasings(userId).Union(getActiveLeasings()).ToList();
+        }
+
+        public static List<Leasing> getActiveLeasings()
+        {
+            return GetAll().Where(l => l.IsActive()).ToList();
         }
     }
 }
