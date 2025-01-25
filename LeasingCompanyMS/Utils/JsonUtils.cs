@@ -28,5 +28,11 @@ namespace LeasingCompanyMS.Utils
             List<Car>? cars = JsonSerializer.Deserialize<List<Car>>(jsonString);
             return cars ?? new List<Car>();
         }
+
+        public List<Leasing> MapJsonStringToLeasingList(string jsonString)
+        {
+            List<Leasing>? leasings = JsonSerializer.Deserialize<List<Leasing>>(jsonString)!;
+            return leasings ?? new List<Leasing>();
+        }
     }
 }

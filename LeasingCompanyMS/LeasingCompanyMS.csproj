@@ -13,7 +13,8 @@
     <None Remove="Images\key-icon.png" />
     <None Remove="Images\user-icon.png" />
     <None Remove="Json\users.json" />
-	  <None Remove="Json\cars.json" />
+	<None Remove="Json\cars.json" />
+	<None Remove="Json\leasings.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
 	<Content Include="Json\cars.json">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Json\leasings.json">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</Content>
   </ItemGroup>

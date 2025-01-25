@@ -82,7 +82,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource borderColor2}">
+                                 Tag="{StaticResource borderColor2}"
+                                 Click="openLeasingInformation">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Leasing Information" 
                                        Margin="15,0,0,0"
