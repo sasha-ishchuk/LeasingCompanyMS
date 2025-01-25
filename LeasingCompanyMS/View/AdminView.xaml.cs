@@ -23,6 +23,7 @@ namespace LeasingCompanyMS.View
     public partial class AdminView : Window
     {
         private Page manageCars = new ManageCarsPage();
+        private Page leasingInformation = new LeasingInformationPage();
 
         // to use events/methods from OS
         [DllImport("user32.dll")]
@@ -68,6 +69,14 @@ namespace LeasingCompanyMS.View
         private void openManageCars(object sender, RoutedEventArgs e)
         {
             openPage(manageCars);
+        }
+
+        private void openLeasingInformation(object sender, RoutedEventArgs e)
+        {
+            openPage(leasingInformation);
+            var test = Model.CarsRepository.GetAll();
+
+
         }
     }
 }

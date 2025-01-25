@@ -8,30 +8,30 @@ using LeasingCompanyMS.Utils;
 
 namespace LeasingCompanyMS.Model
 {
-    public static class CarsRepository
+    public static class LeasingsRepository
     {
         private static readonly JsonUtils _jsonUtils = new JsonUtils();
-        private static List<Car> cars;
 
 
-        public static List<Car> GetAll()
+        public static List<Leasing> GetAll()
         {
-            if (cars == null)
+            string jsonString = _jsonUtils.ReadFromJson(GetPathToLeasingsJson());
+            List<Leasing> leasings = _jsonUtils.MapJsonStringToLeasingList(jsonString);
+            if (leasings.Count == 0)
             {
-                string jsonString = _jsonUtils.ReadFromJson(GetPathToCarsJson());
-                cars = _jsonUtils.MapJsonStringToCarList(jsonString);
+                return new List<Leasing>();
             }
-            return cars;
+            return leasings;
         }
 
-        private static string GetPathToCarsJson()
+        private static string GetPathToLeasingsJson()
         {
             string? projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             if (projectPath == null)
             {
                 throw new Exception("Project path not found");
             }
-            return Path.Combine(projectPath, "Json", "cars.json");
+            return Path.Combine(projectPath, "Json", "leasings.json");
         }
     }
 }

@@ -8,6 +8,7 @@ namespace LeasingCompanyMS.Model
 {
     public class Car
     {
+        public int id {  get; set; }
         public string Registration { get; set; }
         public string Mark { get; set; }
         public string Model { get; set; }
