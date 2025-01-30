@@ -1,50 +1,23 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 using LeasingCompanyMS.Model;
-using LeasingCompanyMS.View;
+using LeasingCompanyMS.Model.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace LeasingCompanyMS
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-        private UserRepository userRepository = new UserRepository();
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            var loginView = new View.LoginView();
-            loginView.Show();
-            loginView.IsVisibleChanged += (s, ev) =>
-            {
-                if (!loginView.IsVisible && loginView.IsLoaded)
-                {
-                    var identity = Thread.CurrentPrincipal?.Identity;
-                    if (identity != null && !string.IsNullOrEmpty(identity.Name))
-                    {
-                        var role = userRepository.GetRoleByUsername(identity.Name);
-                        if (role == "admin")
-                        {
-                            var adminView = new AdminView();
-                            adminView.Show();
-                            loginView.Close();
-                        }
-                        else if (role == "user")
-                        {
-                            var userView = new UserView();
-                            userView.Show();
-                            loginView.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("You are not authorized to access this application. App will be close");
-                            Application.Current.Shutdown();
-                        }
-                    }
-                }
-            };
-        }
+namespace LeasingCompanyMS;
+
+using ICarsRepository = IRepository<Car, string, CarsFilter>;
+using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
+using IUsersRepository = IRepository<User, string, UsersFilter>;
+
+public partial class App : Application {
+    public static IServiceProvider ServiceProvider { get; private set; } = null!;
+
+    protected override void OnStartup(StartupEventArgs e) {
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddSingleton<IUsersRepository>(new UsersRepository());
+        serviceCollection.AddSingleton<ICarsRepository>(new CarsRepository());
+        serviceCollection.AddSingleton<ILeasingsRepository>(new LeasingsRepository());
+
+        ServiceProvider = serviceCollection.BuildServiceProvider();
     }
-
 }

@@ -1,0 +1,147 @@
+﻿<Page x:Class="LeasingCompanyMS.Pages.LoginPage.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:customControls="clr-namespace:LeasingCompanyMS.CustomControls"
+      xmlns:loginPage="clr-namespace:LeasingCompanyMS.Pages.LoginPage"
+      mc:Ignorable="d"
+      MinWidth="800"
+      MinHeight="600">
+	<Page.DataContext>
+		<loginPage:LoginPageViewModel />
+	</Page.DataContext>
+
+	<Page.Background>
+		<DrawingBrush Stretch="UniformToFill">
+			<DrawingBrush.Drawing>
+				<DrawingGroup>
+					<ImageDrawing ImageSource="/Images/back-image.jpg" Rect="0,0,1,1" />
+					<GeometryDrawing>
+						<GeometryDrawing.Brush>
+							<LinearGradientBrush StartPoint="0,1" EndPoint="1,1" Opacity="0.9">
+								<GradientStop Color="{StaticResource backColor1}" Offset="0" />
+								<GradientStop Color="{StaticResource backColor2}" Offset="0.5" />
+							</LinearGradientBrush>
+						</GeometryDrawing.Brush>
+						<GeometryDrawing.Geometry>
+							<RectangleGeometry Rect="0,0,1,1" />
+						</GeometryDrawing.Geometry>
+					</GeometryDrawing>
+				</DrawingGroup>
+			</DrawingBrush.Drawing>
+		</DrawingBrush>
+	</Page.Background>
+
+	<StackPanel Orientation="Vertical"
+	            HorizontalAlignment="Center"
+	            VerticalAlignment="Center">
+		<TextBlock Text="Leasing MS"
+		           Foreground="{StaticResource titleColor1}"
+		           FontSize="32"
+		           FontWeight="Medium"
+		           FontFamily="Montserrat"
+		           HorizontalAlignment="Center" />
+		<TextBlock Text="Innovative Leasing Solutions That Drive Your Business and Lifestyle Forward."
+		           Foreground="{StaticResource titleColor2}"
+		           FontSize="14"
+		           FontWeight="Medium"
+		           FontFamily="Montserrat"
+		           TextWrapping="Wrap"
+		           TextAlignment="Center"
+		           Margin="0,5,0,0" />
+
+		<TextBlock Text="Username"
+		           Foreground="{StaticResource titleColor3}"
+		           FontSize="16"
+		           FontWeight="Medium"
+		           FontFamily="Montserrat"
+		           Margin="0,35,0,0" />
+
+		<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+		         FontSize="14"
+		         FontWeight="Medium"
+		         FontFamily="Montserrat"
+		         Foreground="{StaticResource titleColor1}"
+		         CaretBrush="{StaticResource titleColor2}"
+		         BorderBrush="{StaticResource titleColor3}"
+		         BorderThickness="0,0,0,2"
+		         Height="28"
+		         VerticalContentAlignment="Center"
+		         Margin="0,5,0,0"
+		         Padding="30,0,0,0">
+
+			<TextBox.Background>
+				<ImageBrush ImageSource="/Images/user-icon.png"
+				            Stretch="Uniform"
+				            AlignmentX="Left" />
+			</TextBox.Background>
+		</TextBox>
+
+		<TextBlock Text="Password"
+		           Foreground="{StaticResource titleColor3}"
+		           FontSize="16"
+		           FontWeight="Medium"
+		           FontFamily="Montserrat"
+		           Margin="0,15,0,0" />
+
+		<customControls:CustomPasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+		                                  Margin="0,5,0,0"
+		                                  Height="28" />
+
+		<TextBlock Text="{Binding ErrorMessage}"
+		           Foreground="{StaticResource errorColor}"
+		           FontSize="16"
+		           FontWeight="Medium"
+		           FontFamily="Montserrat"
+		           Margin="0,10,0,0"
+		           TextWrapping="Wrap" />
+
+		<Button Command="{Binding LoginCommand}"
+		        BorderThickness="0"
+		        Content="LOG IN"
+		        Foreground="White"
+		        FontSize="12"
+		        FontWeight="Medium"
+		        FontFamily="Montserrat"
+		        Cursor="Hand"
+		        Margin="0,30,0,0">
+			<Button.Style>
+				<Style TargetType="Button">
+					<Setter Property="Background" Value="#509A10" />
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#386C0B" />
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border Width="150" Height="40"
+					        CornerRadius="20"
+					        Background="{TemplateBinding Background}">
+						<ContentPresenter VerticalAlignment="Center"
+						                  HorizontalAlignment="Center" />
+					</Border>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+		<StackPanel Orientation="Horizontal"
+		            HorizontalAlignment="Center"
+		            Margin="0,15,0,0">
+			<TextBlock Text="Forgot Password?"
+			           Foreground="{StaticResource titleColor3}"
+			           FontSize="12"
+			           FontWeight="Medium"
+			           FontFamily="Montserrat" />
+			<TextBlock Text="Reset"
+			           Foreground="{StaticResource titleColor1}"
+			           FontSize="12"
+			           FontWeight="Medium"
+			           FontFamily="Montserrat"
+			           Cursor="Hand"
+			           Margin="8,0,0,0" />
+		</StackPanel>
+	</StackPanel>
+</Page>
