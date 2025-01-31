@@ -35,8 +35,13 @@
 				</LinearGradientBrush>
 			</Border.Background>
 
-			<StackPanel>
-				<StackPanel Orientation="Horizontal">
+			<DockPanel
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Left"
+                Height="Auto"
+                >
+				
+				<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
 					<TextBlock Text="{Binding CurrentPrincipal, Converter={StaticResource RoleToNameConverter}, ConverterParameter=admin}"
 					           Margin="10 10 10 10"
 					           Foreground="{StaticResource titleColor2}"
@@ -49,7 +54,8 @@
 				<RadioButton Name="ManageCarsRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
-				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}">
+				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}"
+                             DockPanel.Dock="Top">
 					<TextBlock Text="Manage Cars"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -58,7 +64,8 @@
 				<RadioButton Name="ManageClientsRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
-				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}">
+				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}"
+                             DockPanel.Dock="Top">
 					<TextBlock Text="Manage Clients"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -66,7 +73,8 @@
 
 				<RadioButton Name="CarsAvailableRadioButton"
 				             Style="{StaticResource menuButton}"
-				             Tag="{StaticResource borderColor2}">
+				             Tag="{StaticResource borderColor2}"
+                             DockPanel.Dock="Top">
 					<TextBlock Text="Cars Available"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -74,12 +82,25 @@
 
 				<RadioButton Name="LeasingInformationRadioButton"
 				             Style="{StaticResource menuButton}"
-				             Tag="{StaticResource borderColor2}">
+				             Tag="{StaticResource borderColor2}"
+                             DockPanel.Dock="Top">
 					<TextBlock Text="Leasing Information"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
 				</RadioButton>
-			</StackPanel>
+
+                <RadioButton Name="LogoutButton"
+                             Style="{StaticResource menuButton}"
+                             Tag="{StaticResource borderColor2}"
+                             VerticalAlignment="Bottom"
+                             DockPanel.Dock="Bottom"
+                             Click="LogoutAction">
+                    <TextBlock Text="Logout"
+                               Margin="10,0,0,0"
+                               Style="{StaticResource menuButtonText}"
+                               />
+                </RadioButton>
+			</DockPanel>
 		</Border>
 
 		<Border Grid.Column="1" Padding="24">
