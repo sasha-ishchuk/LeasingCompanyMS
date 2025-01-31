@@ -1,16 +1,13 @@
 ﻿<Application x:Class="LeasingCompanyMS.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:LeasingCompanyMS"
-             Startup="Application_Startup">
+             StartupUri="Components/MainWindow/MainWindow.xaml">
     <Application.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="CustomStyles/Colors.xaml"/>
                 <ResourceDictionary Source="CustomStyles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>

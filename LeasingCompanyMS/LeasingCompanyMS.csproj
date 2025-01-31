@@ -1,35 +1,79 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Images\back-image.jpg" />
-    <None Remove="Images\key-icon.png" />
-    <None Remove="Images\user-icon.png" />
-    <None Remove="Json\users.json" />
-	<None Remove="Json\cars.json" />
-	<None Remove="Json\leasings.json" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Images\back-image.jpg"/>
+        <None Remove="Images\key-icon.png"/>
+        <None Remove="Images\user-icon.png"/>
+        <None Remove="Json\users.json"/>
+        <None Remove="Json\cars.json"/>
+        <None Remove="Json\leasings.json"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Resource Include="Images\back-image.jpg"/>
+        <Resource Include="Images\key-icon.png"/>
+        <Resource Include="Images\user-icon.png"/>
+        <Resource Include="Components\MainWindow\Assets\close.png"/>
+        <Resource Include="Components\MainWindow\Assets\maximize.png"/>
+        <Resource Include="Components\MainWindow\Assets\minimize.png"/>
 
-  <ItemGroup>
-    <Resource Include="Images\back-image.jpg" />
-    <Resource Include="Images\key-icon.png" />
-    <Resource Include="Images\user-icon.png" />
-    <Content Include="Json\users.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-	<Content Include="Json\cars.json">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="Json\leasings.json">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-  </ItemGroup>
+        <Content Include="Json\users.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Json\cars.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Json\leasings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+        <PackageReference Include="SharpVectors" Version="1.8.4.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Pages\BrowseCarsPage\BrowseCarsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Pages\ClientsInformationPage\ClientsInformationPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Pages\ManageCarsPage\ManageCarsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Pages\ManagePaymentsPage\ManagePaymentsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Pages\LoginPage\LoginPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Layouts\MainMenuView\MainMenuView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Layouts\" />
+    </ItemGroup>
 
 </Project>

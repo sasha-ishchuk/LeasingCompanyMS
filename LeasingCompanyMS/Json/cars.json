@@ -1,42 +1,82 @@
 [
-    {
-        "id": 0,
-        "Registration": "KWA5516",
-        "Mark": "Mazda",
-        "Model": "CX-5",
-        "Year": 2016,
-        "VIN": "BF9MR42V8EBR67858"
-    },
-    {
-        "id": 1,
-        "Registration": "DWR7351",
-        "Mark": "Audi",
-        "Model": "Q8",
-        "Year": 2019,
-        "VIN": "LPA0LMHJ02JFW6040"
-    },
-    {
-        "id": 2,
-        "Registration": "WA04474",
-        "Mark": "BMW",
-        "Model": "M5",
-        "Year": 2020,
-        "VIN": "PM1M6AL60YHKB3977"
-    },
-    {
-        "id": 3,
-        "Registration": "KMI3975",
-        "Mark": "Maserati",
-        "Model": "Ghibli",
-        "Year": 2019,
-        "VIN": "LE4KJUUF66YDM9280"
-    },
-    {
-        "id": 4,
-        "Registration": "KR984AU",
-        "Mark": "Volvo",
-        "Model": "XC90",
-        "Year": 2023,
-        "VIN": "6MMWZCBJ1U0S99940"
-    }
+  {
+    "Id": "0",
+    "Registration": "KWA5516",
+    "Mark": "Mazda",
+    "Model": "CX-5",
+    "Year": 2016,
+    "VIN": "BF9MR42V8EBR67858"
+  },
+  {
+    "Id": "1",
+    "Registration": "DWR7351",
+    "Mark": "Audi",
+    "Model": "Q8",
+    "Year": 2019,
+    "VIN": "LPA0LMHJ02JFW6040"
+  },
+  {
+    "Id": "2",
+    "Registration": "WA04474",
+    "Mark": "BMW",
+    "Model": "M5",
+    "Year": 2020,
+    "VIN": "PM1M6AL60YHKB3977"
+  },
+  {
+    "Id": "3",
+    "Registration": "KMI3975",
+    "Mark": "Maserati",
+    "Model": "Ghibli",
+    "Year": 2019,
+    "VIN": "LE4KJUUF66YDM9280"
+  },
+  {
+    "Id": "4",
+    "Registration": "KR984AU",
+    "Mark": "Volvo",
+    "Model": "XC90",
+    "Year": 2023,
+    "VIN": "6MMWZCBJ1U0S99940"
+  },
+  {
+    "Id": "5",
+    "Registration": "WA12345",
+    "Mark": "Toyota",
+    "Model": "Corolla",
+    "Year": 2015,
+    "VIN": "JT2BU4EE9FJ100100"
+  },
+  {
+    "Id": "6",
+    "Registration": "KR98765",
+    "Mark": "Volkswagen",
+    "Model": "Golf",
+    "Year": 2018,
+    "VIN": "WVWZZZ1JZDW010101"
+  },
+  {
+    "Id": "7",
+    "Registration": "PO45678",
+    "Mark": "Ford",
+    "Model": "Focus",
+    "Year": 2020,
+    "VIN": "WF0SXXGCBXJ010202"
+  },
+  {
+    "Id": "8",
+    "Registration": "GD23456",
+    "Mark": "BMW",
+    "Model": "X5",
+    "Year": 2017,
+    "VIN": "5UXKR2C58H0Y00000"
+  },
+  {
+    "Id": "9",
+    "Registration": "WA54321",
+    "Mark": "Mercedes-Benz",
+    "Model": "E-Class",
+    "Year": 2019,
+    "VIN": "WDD2130221F100500"
+  }
 ]
