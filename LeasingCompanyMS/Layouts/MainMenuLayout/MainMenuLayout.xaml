@@ -115,7 +115,7 @@
 						<Setter Property="ContentTemplate" Value="{StaticResource BrowseCarsPage}" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding IsChecked, ElementName=ManageCarsRadioButton}" Value="True">
-								<Setter Property="ContentTemplate" Value="{StaticResource BrowseCarsPage}" />
+								<Setter Property="ContentTemplate" Value="{StaticResource ManageCarsPage}" />
 							</DataTrigger>
 
 							<DataTrigger Binding="{Binding IsChecked, ElementName=ManageClientsRadioButton}" Value="True">
@@ -123,7 +123,7 @@
 							</DataTrigger>
 
 							<DataTrigger Binding="{Binding IsChecked, ElementName=CarsAvailableRadioButton}" Value="True">
-								<Setter Property="ContentTemplate" Value="{StaticResource ManageCarsPage}" />
+								<Setter Property="ContentTemplate" Value="{StaticResource BrowseCarsPage}" />
 							</DataTrigger>
 
 							<DataTrigger Binding="{Binding IsChecked, ElementName=LeasingInformationRadioButton}" Value="True">
