@@ -18,6 +18,7 @@
 	
 	<Page.Resources>
 		<mainMenuLayout:RoleToVisibilityConverter x:Key="RoleToVisibilityConverter" />
+		<mainMenuLayout:RoleToNameConverter x:Key="RoleToNameConverter" /> 
 	</Page.Resources>
 	
 	<Grid>
@@ -36,7 +37,7 @@
 
 			<StackPanel>
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="Leasing MS - Admin"
+					<TextBlock Text="{Binding CurrentPrincipal, Converter={StaticResource RoleToNameConverter}, ConverterParameter=admin}"
 					           Margin="10 10 10 10"
 					           Foreground="{StaticResource titleColor2}"
 					           FontSize="20"
