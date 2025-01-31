@@ -14,7 +14,7 @@ public class UsersRepository : IUsersRepository {
         if (projectPath == null) throw new Exception("Project path not found");
         return Path.Combine(projectPath, "Json", "users.json");
     }
-    
+
     public bool AuthenticateUser(string username, string password) {
         List<User> users = GetAll();
         foreach (var user in users)
@@ -27,7 +27,7 @@ public class UsersRepository : IUsersRepository {
     public List<User> GetAll() {
         return Users;
     }
-    
+
     public List<User> Get(UsersFilter usersFilter) {
         return Users.FindAll(user => {
             return usersFilter.Id != null ? user.Id == usersFilter.Id : true

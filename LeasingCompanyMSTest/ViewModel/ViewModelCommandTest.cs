@@ -3,14 +3,12 @@ using LeasingCompanyMS.ViewModel;
 namespace LeasingCompanyMSTest.ViewModel;
 
 [TestClass]
-public class ViewModelCommandTest
-{
+public class ViewModelCommandTest {
     private bool _canExecuteCalled = false;
     private bool _executeCalled = false;
 
     [TestMethod]
-    public void CanExecute_WhenCanExecuteActionIsNull_ThenReturnsTrue()
-    {
+    public void CanExecute_WhenCanExecuteActionIsNull_ThenReturnsTrue() {
         // given
         var command = new ViewModelCommand(param => { });
         // when
@@ -20,8 +18,7 @@ public class ViewModelCommandTest
     }
 
     [TestMethod]
-    public void CanExecute_WhenCanExecuteActionReturnsTrue_ThenReturnsTrue()
-    {
+    public void CanExecute_WhenCanExecuteActionReturnsTrue_ThenReturnsTrue() {
         // given
         var command = new ViewModelCommand(param => { }, param => true);
         // when
@@ -31,8 +28,7 @@ public class ViewModelCommandTest
     }
 
     [TestMethod]
-    public void CanExecute_WhenCanExecuteActionReturnsFalse_ThenReturnsFalse()
-    {
+    public void CanExecute_WhenCanExecuteActionReturnsFalse_ThenReturnsFalse() {
         // given
         var command = new ViewModelCommand(param => { }, param => false);
         // when
@@ -42,8 +38,7 @@ public class ViewModelCommandTest
     }
 
     [TestMethod]
-    public void Execute_ShouldCallExecuteAction()
-    {
+    public void Execute_ShouldCallExecuteAction() {
         // given
         var command = new ViewModelCommand(param => _executeCalled = true);
         // when
@@ -53,8 +48,7 @@ public class ViewModelCommandTest
     }
 
     [TestMethod]
-    public void CanExecute_ShouldCallCanExecuteAction()
-    {
+    public void CanExecute_ShouldCallCanExecuteAction() {
         // given
         var command = new ViewModelCommand(param => { }, param =>
         {

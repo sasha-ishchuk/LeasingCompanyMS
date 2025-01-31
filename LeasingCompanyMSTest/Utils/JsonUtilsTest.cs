@@ -5,23 +5,19 @@ using LeasingCompanyMS.Utils;
 namespace LeasingCompanyMSTest.Utils
 {
     [TestClass]
-    public class JsonUtilsTest
-    {
-        private JsonUtils _jsonUtils;
+    public class JsonUtilsTest {
+
         private string _jsonFilePath;
 
         [TestInitialize]
-        public void Setup()
-        {
-            _jsonUtils = new JsonUtils();
+        public void Setup() {
             _jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "users_test.json");
         }
 
         [TestMethod]
-        public void ReadUsersFromJson_WhenFileExists_ThenReturnsJsonString()
-        {
+        public void ReadUsersFromJson_WhenFileExists_ThenReturnsJsonString() {
             // given
-            string result = _jsonUtils.ReadFromJson(_jsonFilePath);
+            string result = JsonUtils.ReadFromJson(_jsonFilePath);
             // when/then
             Assert.IsNotNull(result);
             string expectedJson = File.ReadAllText(_jsonFilePath);
@@ -29,28 +25,25 @@ namespace LeasingCompanyMSTest.Utils
         }
 
         [TestMethod]
-        public void ReadUsersFromJson_WhenFileDoesNotExist_ThenThrowsFileNotFoundException()
-        {
+        public void ReadUsersFromJson_WhenFileDoesNotExist_ThenThrowsFileNotFoundException() {
             // given
             string nonExistentFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "nonexistent.json");
             // when/then
-            Assert.ThrowsException<FileNotFoundException>(() => _jsonUtils.ReadFromJson(nonExistentFilePath));
+            Assert.ThrowsException<FileNotFoundException>(() => JsonUtils.ReadFromJson(nonExistentFilePath));
         }
 
         [TestMethod]
-        public void ReadUsersFromJson_WhenFilePathIsNull_ThenThrowsArgumentNullException()
-        {
+        public void ReadUsersFromJson_WhenFilePathIsNull_ThenThrowsArgumentNullException() {
             // given/when/then
-            Assert.ThrowsException<ArgumentNullException>(() => _jsonUtils.ReadFromJson(null));
+            Assert.ThrowsException<ArgumentNullException>(() => JsonUtils.ReadFromJson(null));
         }
 
         [TestMethod]
-        public void MapJsonStringToUserList_WhenJsonStringIsValid_ThenReturnsUserList()
-        {
+        public void MapJsonStringToUserList_WhenJsonStringIsValid_ThenReturnsUserList() {
             // given
             string jsonString = File.ReadAllText(_jsonFilePath);
             // when
-            List<User> result = _jsonUtils.MapJsonStringToUserList(jsonString);
+            List<User> result = JsonUtils.MapJsonStringToUserList(jsonString);
             // then
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
@@ -60,24 +53,22 @@ namespace LeasingCompanyMSTest.Utils
         }
 
         [TestMethod]
-        public void MapJsonStringToUserList_WhenJsonStringIsEmpty_ThenReturnsEmptyList()
-        {
+        public void MapJsonStringToUserList_WhenJsonStringIsEmpty_ThenReturnsEmptyList() {
             // given
             string jsonString = "[]";
             // when
-            List<User> result = _jsonUtils.MapJsonStringToUserList(jsonString);
+            List<User> result = JsonUtils.MapJsonStringToUserList(jsonString);
             // then
             Assert.IsNotNull(result);
             Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
-        public void MapJsonStringToUserList_WhenJsonStringIsInvalid_ThenThrowsJsonException()
-        {
+        public void MapJsonStringToUserList_WhenJsonStringIsInvalid_ThenThrowsJsonException() {
             // given
             string invalidJsonString = "invalid json";
             // when/then
-            Assert.ThrowsException<JsonException>(() => _jsonUtils.MapJsonStringToUserList(invalidJsonString));
+            Assert.ThrowsException<JsonException>(() => JsonUtils.MapJsonStringToUserList(invalidJsonString));
         }
     }
 }
