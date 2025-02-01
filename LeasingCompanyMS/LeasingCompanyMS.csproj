@@ -57,7 +57,7 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-        <Page Update="Pages\ManagePaymentsPage\ManagePaymentsPage.xaml">
+        <Page Update="Pages\ManagePaymentsPage\MyLeasingsPage.xaml">
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>

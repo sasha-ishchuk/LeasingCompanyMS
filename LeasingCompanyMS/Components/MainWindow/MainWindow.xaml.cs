@@ -4,7 +4,7 @@ using System.Windows.Navigation;
 
 namespace LeasingCompanyMS.Components.MainWindow;
 
-public partial class MainWindow : Window {
+public partial class MainWindow {
     // MainWindow ...
     public MainWindow() {
         InitializeComponent();
@@ -25,7 +25,7 @@ public partial class MainWindow : Window {
 
     // HandleCloseWindow ...
     private void HandleCloseWindow(object sender, RoutedEventArgs e) {
-        Application.Current.Shutdown();
+        this.Close();
     }
 
     // HandleWindowMove ...

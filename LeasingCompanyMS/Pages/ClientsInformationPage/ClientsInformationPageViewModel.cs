@@ -1,35 +1,77 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
+using LeasingCompanyMS.Components.MainWindow;
 using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
+using LeasingCompanyMS.Pages.Components.NewClient;
+using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace LeasingCompanyMS.Pages;
 
+using IUsersRepository = IRepository<User, string, UsersFilter>;
+
 public sealed class ClientsInformationPageViewModel : INotifyPropertyChanged {
-    private readonly IRepository<Leasing, string, LeasingsFilter> _leasingsRepository = App.ServiceProvider.GetService<IRepository<Leasing, string, LeasingsFilter>>()!;
-    private Leasing? _selectedLeasing;
+    private readonly IUsersRepository _usersRepository = App.ServiceProvider.GetService<IUsersRepository>()!;
+    
+    public ClientsInformationPageViewModel() {
+        OpenCreateNewClientWindowCommand =
+            new RelayCommand(ExecuteOpenNewClientWindowCommand, CanExecuteOpenNewClientWindowCommand);
 
-    public List<Leasing> Leasings => _leasingsRepository.GetAll();
+        Users = GetUsers();
+    }
 
-    public Leasing? SelectedLeasing {
-        get => _selectedLeasing;
+    // Disgusting workaround for 6017 error, retarded xaml behaviour, lack of time.
+    private void ExecuteOpenNewClientWindowCommand(object? parameter) {
+        MainWindow createNewClientWindow = new MainWindow {
+            SizeToContent = SizeToContent.WidthAndHeight,
+            Owner = Application.Current.MainWindow,
+        };
+
+        CreateNewClientWindow createNewClientWindowPage = new CreateNewClientWindow() {
+            DataContext = new CreateNewClientWindowModelView(createNewClientWindow.Close),
+        };
+        
+        createNewClientWindow.MainWindowFrame.Content = createNewClientWindowPage;
+        createNewClientWindow.Closed += (_, __) => { Users = [..GetUsers()]; };
+        createNewClientWindow.ShowDialog();
+    }
+
+    private bool CanExecuteOpenNewClientWindowCommand(object? parameter) {
+        return true;
+    }
+
+    private List<User> _users;
+
+    public List<User> Users {
+        get => _users;
         set {
-            _selectedLeasing = value;
+            _users = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    private User? _selectedUser;
+
+    public User? SelectedUser {
+        get => _selectedUser;
+        set {
+            _selectedUser = value;
             OnPropertyChanged();
         }
     }
 
+    public ICommand OpenCreateNewClientWindowCommand { get; }
+
+    private List<User> GetUsers() {
+        return _usersRepository.GetAll();
+    }
+    
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null) {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
     }
 }

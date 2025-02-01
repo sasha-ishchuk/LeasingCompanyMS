@@ -3,10 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:browseCarsPage="clr-namespace:LeasingCompanyMS.Pages.BrowseCarsPage"
       xmlns:clientsInformationPage="clr-namespace:LeasingCompanyMS.Pages.ClientsInformationPage"
       xmlns:manageCarsPage="clr-namespace:LeasingCompanyMS.Pages.ManageCarsPage"
-      xmlns:managePaymentsPage="clr-namespace:LeasingCompanyMS.Pages.ManagePaymentsPage"
+      xmlns:myLeasingsPage="clr-namespace:LeasingCompanyMS.Pages.MyLeasingsPage"
       xmlns:mainMenuLayout="clr-namespace:LeasingCompanyMS.Layouts.MainMenuLayout"
       xmlns:availableCarsPage="clr-namespace:LeasingCompanyMS.Pages.AvailableCarsPage"
       mc:Ignorable="d"
@@ -76,16 +75,16 @@
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
 				             DockPanel.Dock="Top">
-					<TextBlock Text="Cars Available"
+					<TextBlock Text="Available Cars"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
 				</RadioButton>
 
-				<RadioButton Name="LeasingInformationRadioButton"
+				<RadioButton Name="MyLeasingsRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
 				             DockPanel.Dock="Top">
-					<TextBlock Text="Leasing Information"
+					<TextBlock Text="My Leasings"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
 				</RadioButton>
@@ -125,9 +124,9 @@
 					              DataType="{x:Type manageCarsPage:ManageCarsPage}">
 						<manageCarsPage:ManageCarsPage />
 					</DataTemplate>
-					<DataTemplate x:Key="ManagePaymentsPage"
-					              DataType="{x:Type managePaymentsPage:ManagePaymentsPage}">
-						<managePaymentsPage:ManagePaymentsPage />
+					<DataTemplate x:Key="MyLeasingsPage"
+					              DataType="{x:Type myLeasingsPage:MyLeasingsPage}">
+						<myLeasingsPage:MyLeasingsPage />
 					</DataTemplate>
 				</Frame.Resources>
 
@@ -147,8 +146,8 @@
 								<Setter Property="ContentTemplate" Value="{StaticResource AvailableCarsPage}" />
 							</DataTrigger>
 
-							<DataTrigger Binding="{Binding IsChecked, ElementName=LeasingInformationRadioButton}" Value="True">
-								<Setter Property="ContentTemplate" Value="{StaticResource ManagePaymentsPage}" />
+							<DataTrigger Binding="{Binding IsChecked, ElementName=MyLeasingsRadioButton}" Value="True">
+								<Setter Property="ContentTemplate" Value="{StaticResource MyLeasingsPage}" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>

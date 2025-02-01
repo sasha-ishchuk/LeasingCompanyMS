@@ -43,10 +43,16 @@ public class LeasingsRepository : ILeasingsRepository {
                    && (leasingsFilter.CarId == null || leasingsFilter.CarId == leasing.CarId);
         });
     }
+    
+    public bool UpdateById(string id, Leasing updatedLeasing) {
+        var leasing = _leasings.Find(c => c.Id == id);
+        if (leasing == null) {
+            return false;
+        }
+        
+        leasing = updatedLeasing;
+        UpdateLeasingsFileContents();
 
-    private static string GetPathToLeasingsJson() {
-        var projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-        if (projectPath == null) throw new Exception("Project path not found");
-        return Path.Combine(projectPath, "Json", "leasings.json");
+        return true;
     }
 }

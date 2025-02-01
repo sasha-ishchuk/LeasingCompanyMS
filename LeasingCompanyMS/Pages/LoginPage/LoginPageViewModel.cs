@@ -23,7 +23,7 @@ public sealed class LoginPageViewModel : INotifyPropertyChanged {
     public ICommand LoginCommand { get; }
 
     public LoginPageViewModel() {
-        LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+        LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
     }
 
     public string Username {

@@ -38,31 +38,32 @@ public class CarsRepository : ICarsRepository {
 
     // INFO(piotr.klosowski): This function is BIG OOF. Kill it with fire.
     public List<Car> Get(CarsFilter carsFilter) {
-        return _cars.If(carsFilter.Brand != null, cars => cars.Where(c => carsFilter.Id == c.Id))
-            .If(carsFilter.Brand != null, cars => cars.Where(c => carsFilter.Brand == c.Brand))
-            .If(carsFilter.Model != null, cars => cars.Where(c => carsFilter.Model == c.Model))
-            .If(carsFilter.ProductionYear != null,
-                cars => cars.Where(c => carsFilter.ProductionYear == c.ProductionYear))
-            .If(carsFilter.RegistrationNumber != null,
-                cars => cars.Where(c => carsFilter.RegistrationNumber == c.RegistrationNumber))
-            .If(carsFilter.BodyColor != null, cars => cars.Where(c => carsFilter.BodyColor == c.BodyColor))
-            .If(carsFilter.Engine != null, cars => {
-                return cars.If(carsFilter.Engine!.HasValue,
-                        cars => cars.Where(c => carsFilter.Engine!.Value.Type == c.Engine.Type))
-                    .If(carsFilter.Engine!.HasValue,
-                        cars => cars.Where(c => carsFilter.Engine!.Value.Displacement == c.Engine.Displacement))
-                    .If(carsFilter.Engine!.HasValue,
-                        cars => cars.Where(c => carsFilter.Engine!.Value.Power == c.Engine.Power));
-            })
-            .If(carsFilter.Vin != null, cars => cars.Where(c => carsFilter.Vin == c.Vin))
-            .If(carsFilter.Packages != null, cars => cars.Where(c => carsFilter.Packages == c.Packages))
-            .If(carsFilter.EstimatedNetValue != null,
-                cars => cars.Where(c => carsFilter.EstimatedNetValue == c.EstimatedNetValue)).ToList();
+        return _cars.Where(car => {
+            return (carsFilter.Id == null || car.Id == carsFilter.Id) &&
+                   (carsFilter.Brand == null || car.Brand == carsFilter.Brand) &&
+                   (carsFilter.Model == null || car.Model == carsFilter.Model) &&
+                   (carsFilter.ProductionYear == null || car.ProductionYear == carsFilter.ProductionYear) &&
+                   (carsFilter.RegistrationNumber == null || car.RegistrationNumber == carsFilter.RegistrationNumber) &&
+                   (carsFilter.BodyColor == null || car.BodyColor == carsFilter.BodyColor) &&
+                   (carsFilter.Engine == null || (
+                       (carsFilter.Engine!.Value.Displacement == null || car.Engine.Displacement == carsFilter.Engine!.Value.Displacement) &&
+                       (carsFilter.Engine!.Value.Type == null || car.Engine.Type == carsFilter.Engine!.Value.Type) &&
+                       (carsFilter.Engine!.Value.Power == null || car.Engine.Power == carsFilter.Engine!.Value.Power)
+                   )) &&
+                   (carsFilter.Vin == null || car.Vin == carsFilter.Vin) &&
+                   (carsFilter.Packages == null || car.Packages == carsFilter.Packages) &&
+                   (carsFilter.EstimatedNetValue == null || car.EstimatedNetValue == carsFilter.EstimatedNetValue) &&
+                   (carsFilter.Status == null || car.Status == carsFilter.Status);
+        }).ToList();
     }
 
-    private static string GetPathToCarsJson() {
-        var projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-        if (projectPath == null) throw new Exception("Project path not found");
-        return Path.Combine(projectPath, "Json", "cars.json");
+    public bool UpdateById(string id, Car updatedCar) {
+        var car = _cars.Find(c => c.Id == id);
+        if (car == null) return false;
+
+        car = updatedCar;
+        UpdateCarsFileContents();
+
+        return true;
     }
 }
