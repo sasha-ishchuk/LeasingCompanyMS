@@ -16,7 +16,7 @@ public class CarsRepository : ICarsRepository {
     }
 
     public Car? GetById(string id) {
-        return Get(new CarsFilter() { Id = id }).First();
+        return Get(new CarsFilter() { Id = id }).FirstOrDefault();
     }
 
     public List<Car> GetAll() {
@@ -25,12 +25,12 @@ public class CarsRepository : ICarsRepository {
 
     public List<Car> Get(CarsFilter carsFilter) {
         return Cars.FindAll(car => {
-            return carsFilter.Id != null && car.Id != carsFilter.Id
-                 && carsFilter.Registration != null && car.Registration != carsFilter.Registration
-                 && carsFilter.Mark != null && car.Mark != carsFilter.Mark
-                 && carsFilter.Model != null && car.Model != carsFilter.Model
-                 && carsFilter.Year != null && car.Year != carsFilter.Year
-                 && carsFilter.VIN != null && car.VIN != carsFilter.VIN;
+            return carsFilter.Id != null ? car.Id == carsFilter.Id : true
+                 && carsFilter.Registration != null ? car.Registration == carsFilter.Registration : true
+                 && carsFilter.Mark != null ? car.Mark == carsFilter.Mark : true 
+                 && carsFilter.Model != null ? car.Model == carsFilter.Model : true
+                 && carsFilter.Year != null ? car.Year == carsFilter.Year  : true
+                 && carsFilter.VIN != null ? car.VIN == carsFilter.VIN : true;
         });
     }
 }
