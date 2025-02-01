@@ -62,7 +62,7 @@ public sealed class LoginPageViewModel : INotifyPropertyChanged {
             return;
         }
         
-        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), [user.Role]);
+        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(user.Id), [user.Role]);
 
         MainWindow.NavigationService.Navigate(new MainMenuLayout());
     }

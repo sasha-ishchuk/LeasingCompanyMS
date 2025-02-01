@@ -24,7 +24,7 @@ public class LeasingsRepository : ILeasingsRepository {
 
     public List<Leasing> Get(LeasingsFilter leasingsFilter) {
         return _leasings.FindAll(leasing => {
-            return leasingsFilter.UserId != null && leasing.Id != leasingsFilter.UserId 
+            return leasingsFilter.UserId != null && leasing.UserId != leasingsFilter.UserId 
                 && leasingsFilter.IsActive != null && leasing.IsActive() == leasingsFilter.IsActive
                 && leasingsFilter.CarId != null && leasing.CarId == leasingsFilter.CarId;
         });
@@ -39,17 +39,5 @@ public class LeasingsRepository : ILeasingsRepository {
         var projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
         if (projectPath == null) throw new Exception("Project path not found");
         return Path.Combine(projectPath, "Json", "leasings.json");
-    }
-
-    public List<Leasing> GetUserLeasings(string userId) {
-        return Get(new LeasingsFilter { UserId = userId });
-    }
-
-    public List<Leasing> GetActiveUserLeasings(string userId) {
-        return Get(new LeasingsFilter { UserId = userId, IsActive = true });
-    }
-
-    public List<Leasing> GetActiveLeasings() {
-        return Get(new LeasingsFilter { IsActive = true });
     }
 }

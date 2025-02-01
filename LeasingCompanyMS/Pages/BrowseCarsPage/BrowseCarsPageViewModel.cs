@@ -90,7 +90,7 @@ public sealed class BrowseCarsPageViewModel : INotifyPropertyChanged {
         var now = DateTime.Now;
         if (LeaseUntil > DateTime.Now) {
             LeasingConditions = new Leasing {
-                User = Thread.CurrentPrincipal!.Identity!.Name!,
+                UserId = Thread.CurrentPrincipal!.Identity!.Name!,
                 CarId = _selectedCar!.Id,
                 From = now,
                 To = LeaseUntil.Value,

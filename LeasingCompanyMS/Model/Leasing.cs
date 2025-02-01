@@ -2,7 +2,7 @@
 
 public record Leasing {
     public string Id { get; set; }
-    public string User { get; set; }
+    public string UserId { get; set; }
     public string CarId { get; set; }
     public int Months { get; set; }
     public DateTime From { get; set; }

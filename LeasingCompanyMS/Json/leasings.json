@@ -2,7 +2,7 @@
   {
     "Id": "0",
     "CarId": "0",
-    "User": "user",
+    "UserId": "user",
     "From": "2024-12-01T00:00:00",
     "To": "2024-12-31T00:00:00",
     "Conditions": ""
@@ -10,7 +10,7 @@
   {
     "Id": "1",
     "CarId": "1",
-    "User": "michal",
+    "UserId": "michal",
     "From": "2025-01-01T00:00:00",
     "To": "2025-01-31T00:00:00",
     "Conditions": ""
