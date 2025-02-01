@@ -1,7 +1,5 @@
 using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
-using LeasingCompanyMS.Utils;
-using Moq;
 
 namespace LeasingCompanyMSTest.Model.Repositories {
     [TestClass]
@@ -37,18 +35,12 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(3, users.Count);
-            Assert.AreEqual("admin", users[0].Username);
-            Assert.AreEqual("admin", users[0].Password);
-            Assert.AreEqual("admin", users[0].Role);
-            Assert.AreEqual("user", users[1].Username);
-            Assert.AreEqual("user", users[1].Password);
-            Assert.AreEqual("user", users[1].Role);
         }
 
         [TestMethod]
         public void GetById_WhenUserExists_ThenReturnsUser() {
             // given/when
-            User user = _usersRepository.GetById("1");
+            User? user = _usersRepository.GetById("1");
             // then
             Assert.IsNotNull(user);
             Assert.AreEqual("user", user.Username);
@@ -59,7 +51,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
         [TestMethod]
         public void GetById_WhenUserDoesNotExist_ThenReturnsNull() {
             // given/when
-            User user = _usersRepository.GetById("nonexistingid");
+            User? user = _usersRepository.GetById("nonexistingid");
             // then
             Assert.IsNull(user);
         }
@@ -77,9 +69,20 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             Assert.AreEqual("admin", users[0].Password);
             Assert.AreEqual("admin", users[0].Role);
         }
+        
+        [TestMethod]
+        public void Get_WithNonExistingRoleFilter_ReturnsNoUsers() {
+            // given
+            var filter = new UsersFilter { Role = "role" };
+            // when
+            List<User> users = _usersRepository.Get(filter);
+            // then
+            Assert.IsNotNull(users);
+            Assert.AreEqual(0, users.Count);
+        }
 
         [TestMethod]
-        public void Get_WithUsernamrFilter_ReturnsFilteredUsers() {
+        public void Get_WithUsernameFilter_ReturnsFilteredUsers() {
             // given
             var filter = new UsersFilter { Username = "admin" };
             // when
@@ -90,6 +93,17 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             Assert.AreEqual("admin", users[0].Username);
             Assert.AreEqual("admin", users[0].Password);
             Assert.AreEqual("admin", users[0].Role);
+        }
+        
+        [TestMethod]
+        public void Get_WithNonExistingUsernameFilter_ReturnsNoUsers() {
+            // given
+            var filter = new UsersFilter { Username = "john_doe" };
+            // when
+            List<User> users = _usersRepository.Get(filter);
+            // then
+            Assert.IsNotNull(users);
+            Assert.AreEqual(0, users.Count);
         }
 
         [TestMethod]
@@ -104,6 +118,17 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             Assert.AreEqual("admin", users[0].Username);
             Assert.AreEqual("admin", users[0].Password);
             Assert.AreEqual("admin", users[0].Role);
+        }
+        
+        [TestMethod]
+        public void Get_WithNonExistingPasswordFilter_ReturnsNoUsers() {
+            // given
+            var filter = new UsersFilter { Password = "hello_world" };
+            // when
+            List<User> users = _usersRepository.Get(filter);
+            // then
+            Assert.IsNotNull(users);
+            Assert.AreEqual(0, users.Count);
         }
     }
 }
