@@ -7,6 +7,7 @@ public record Car {
     public string Model { get; set; }
     public int Year { get; set; }
     public string VIN { get; set; }
+    public int MonthlyLease { get; set; }
 
     public override string ToString() {
         return string.Join(" ", Year, Mark, Model);

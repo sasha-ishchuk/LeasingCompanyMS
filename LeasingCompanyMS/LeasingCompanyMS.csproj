@@ -16,7 +16,7 @@
         <None Remove="Json\cars.json"/>
         <None Remove="Json\leasings.json"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <Resource Include="Images\back-image.jpg"/>
         <Resource Include="Images\key-icon.png"/>
@@ -37,43 +37,43 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1"/>
         <PackageReference Include="SharpVectors" Version="1.8.4.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Pages\BrowseCarsPage\BrowseCarsPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Pages\ClientsInformationPage\ClientsInformationPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Pages\ManageCarsPage\ManageCarsPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Pages\ManagePaymentsPage\ManagePaymentsPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Pages\LoginPage\LoginPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Layouts\MainMenuView\MainMenuView.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
+        <Page Update="Pages\BrowseCarsPage\BrowseCarsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Pages\ClientsInformationPage\ClientsInformationPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Pages\ManageCarsPage\ManageCarsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Pages\ManagePaymentsPage\ManagePaymentsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Pages\LoginPage\LoginPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Layouts\MainMenuView\MainMenuView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Layouts\" />
+        <Folder Include="Layouts\"/>
     </ItemGroup>
 
 </Project>
