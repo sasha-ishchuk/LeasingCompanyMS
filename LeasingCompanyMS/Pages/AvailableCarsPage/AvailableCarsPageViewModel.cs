@@ -13,22 +13,31 @@ using ICarsRepository = IRepository<Car, string, CarsFilter>;
 using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 
 public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
-    public AvailableCarsPageViewModel() {
-        OpenLeaseCarDialogCommand = new ViewModelCommand(ExecuteOpenLeaseCarDialogCommand, CanExecuteOpenLeaseCarDialogCommand);
-        CloseLeaseCarDialogCommand = new ViewModelCommand(ExecuteCloseLeaseCarDialogCommand, CanExecuteCloseLeaseCarDialogCommand);
-        AcceptLeasingConditionCommand = new ViewModelCommand(ExecuteAcceptLeasingConditionsCommand, CanExecuteAcceptLeasingConditionsCommand);
-    }
-
     private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
     private readonly ILeasingsRepository _leasingsRepository = App.ServiceProvider.GetService<ILeasingsRepository>()!;
     private Car? _selectedCar;
-    private LeasingTerms _leasingTerms = new() {
-        Leasing = new(),
-        Car = new(),
-    };
+    private List<Car> _availableCars;
+
+    private LeasingTerms? _leasingTerms;
     private Visibility _isLeaseCarDialogOpen = Visibility.Collapsed;
-    private DateTime? _leaseUntil; // TODO(piotr.klosowski): remove this in future
+    private DateTime? _leaseUntil;
     
+    private List<Car> GetAvailableCars() {
+        var leasings = _leasingsRepository.Get(new LeasingsFilter { IsActive = true });
+        return _carsRepository.GetAll().FindAll(car => leasings.All(leasing => car.Id != leasing.CarId));
+    }
+    
+    public AvailableCarsPageViewModel() {
+        OpenLeaseCarDialogCommand =
+            new ViewModelCommand(ExecuteOpenLeaseCarDialogCommand, CanExecuteOpenLeaseCarDialogCommand);
+        CloseLeaseCarDialogCommand =
+            new ViewModelCommand(ExecuteCloseLeaseCarDialogCommand, CanExecuteCloseLeaseCarDialogCommand);
+        AcceptLeasingConditionCommand = new ViewModelCommand(ExecuteAcceptLeasingConditionsCommand,
+            CanExecuteAcceptLeasingConditionsCommand);
+
+        AvailableCars = GetAvailableCars();
+    }
+
     public Car? SelectedCar {
         get => _selectedCar;
         set {
@@ -37,7 +46,7 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
         }
     }
 
-    public LeasingTerms LeasingTerms {
+    public LeasingTerms? LeasingTerms {
         get => _leasingTerms;
         set {
             _leasingTerms = value;
@@ -50,15 +59,16 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
         set {
             _leaseUntil = value;
             OnPropertyChanged();
-            
-            var now = DateTime.Now;
-            LeasingTerms.Leasing.To = (DateTime)value!; // Oooof
-            LeasingTerms.Leasing.Months = (LeaseUntil.Value.Year - now.Year) * 12 + LeaseUntil.Value.Month - now.Month;
-            OnPropertyChanged(nameof(LeasingTerms));
         }
     }
 
-    public List<Car> Cars => _carsRepository.GetAll(); // TODO(piotr.klosowski): This needs to be refreshed and handle events
+    public List<Car> AvailableCars {
+        get => _availableCars;
+        set {
+            _availableCars = value;
+            OnPropertyChanged();
+        }
+    }
 
     public Visibility IsLeaseCarDialogOpen {
         get => _isLeaseCarDialogOpen;
@@ -76,12 +86,17 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
         return (IsLeaseCarDialogOpen == Visibility.Hidden || IsLeaseCarDialogOpen == Visibility.Collapsed) &&
                SelectedCar is not null;
     }
-    
+
     private void ExecuteOpenLeaseCarDialogCommand(object obj) {
         IsLeaseCarDialogOpen = Visibility.Visible;
-        LeasingTerms = new() {
-            Leasing = new(),
-            Car = SelectedCar!,
+        LeasingTerms = new LeasingTerms {
+            Leasing = new Leasing() {
+                CarId = SelectedCar!.Id,
+                UserId = Thread.CurrentPrincipal.Identity.Name,
+                From = DateTime.Now,
+                To = LeaseUntil!.Value,
+            },
+            Car = SelectedCar!
         };
     }
 
@@ -94,28 +109,16 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
     }
 
     private void ExecuteAcceptLeasingConditionsCommand(object obj) {
-        var now = DateTime.Now;
-        if (LeaseUntil > DateTime.Now) {
-            LeasingTerms = new LeasingTerms() {
-                Leasing = {
-                    UserId = Thread.CurrentPrincipal!.Identity!.Name!,
-                    CarId = _selectedCar!.Id,
-                    From = now,
-                    To = LeaseUntil.Value,
-                    Months = (LeaseUntil.Value.Year - now.Year) * 12 + LeaseUntil.Value.Month - now.Month,
-                    Conditions = "",
-                }
-            };
-        }
-
-        if (_leasingTerms != null) _leasingsRepository.Add(_leasingTerms.Leasing);
+        _leasingsRepository.Add(LeasingTerms.Leasing);
+        AvailableCars = GetAvailableCars();
+        LeasingTerms = null;
         IsLeaseCarDialogOpen = Visibility.Collapsed;
     }
 
     private bool CanExecuteAcceptLeasingConditionsCommand(object obj) {
         return IsLeaseCarDialogOpen == Visibility.Visible && LeaseUntil is not null && SelectedCar is not null;
     }
-    
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null) {

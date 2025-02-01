@@ -19,7 +19,7 @@ public class UsersRepository : IUsersRepository {
 
     private void UpdateUsersFileContents() {
         var stringifiedJsonUsers = JsonUtils.MapUserListToJsonString(_users);
-        File.AppendText(_usersFilePath).Write(stringifiedJsonUsers);
+        File.WriteAllText(_usersFilePath, stringifiedJsonUsers);
     }
 
     public void Add(User user) {

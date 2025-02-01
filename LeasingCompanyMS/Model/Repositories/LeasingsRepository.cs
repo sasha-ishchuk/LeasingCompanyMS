@@ -1,17 +1,31 @@
 ﻿using System.IO;
 using LeasingCompanyMS.Utils;
+using static System.Guid;
 
 namespace LeasingCompanyMS.Model.Repositories;
 
 using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 
 public class LeasingsRepository : ILeasingsRepository {
-    private static List<Leasing> _leasings = LoadLeasings();
+    private readonly List<Leasing> _leasings;
+    private readonly string _leasingsFilePath;
+
+    public LeasingsRepository(string leasingsFilePath = "leasings.json") {
+        _leasingsFilePath = leasingsFilePath;
+
+        var leasingsJson = File.ReadAllText(_leasingsFilePath);
+        _leasings = JsonUtils.MapJsonStringToLeasingList(leasingsJson);
+    }
+
+    private void UpdateLeasingsFileContents() {
+        var stringifiedJsonLeasings = JsonUtils.MapLeasingListToJsonString(_leasings);
+        File.WriteAllText(_leasingsFilePath, stringifiedJsonLeasings);
+    }
 
     public void Add(Leasing leasing) {
+        leasing.Id = NewGuid().ToString();
         _leasings.Add(leasing);
-        JsonUtils.WriteToJson(JsonUtils.MapLeasingListToJsonString(_leasings), GetPathToLeasingsJson());
-        _leasings = LoadLeasings();
+        UpdateLeasingsFileContents();
     }
 
     public Leasing? GetById(string id) {
@@ -24,15 +38,10 @@ public class LeasingsRepository : ILeasingsRepository {
 
     public List<Leasing> Get(LeasingsFilter leasingsFilter) {
         return _leasings.FindAll(leasing => {
-            return leasingsFilter.UserId != null && leasing.UserId != leasingsFilter.UserId 
-                && leasingsFilter.IsActive != null && leasing.IsActive() == leasingsFilter.IsActive
-                && leasingsFilter.CarId != null && leasing.CarId == leasingsFilter.CarId;
+            return (leasingsFilter.Id == null || leasingsFilter.Id == leasing.Id)
+                   && (leasingsFilter.IsActive == null || leasingsFilter.IsActive == leasing.IsActive())
+                   && (leasingsFilter.CarId == null || leasingsFilter.CarId == leasing.CarId);
         });
-    }
-
-    private static List<Leasing> LoadLeasings() {
-        var leasingsJson = JsonUtils.ReadFromJson(GetPathToLeasingsJson());
-        return JsonUtils.MapJsonStringToLeasingList(leasingsJson);
     }
 
     private static string GetPathToLeasingsJson() {

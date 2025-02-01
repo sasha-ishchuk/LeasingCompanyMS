@@ -17,66 +17,81 @@
 		<StackPanel HorizontalAlignment="Stretch"
 		            VerticalAlignment="Stretch">
 
-			<TextBlock HorizontalAlignment="Center"
-			           VerticalAlignment="Top">
-				Confirm leasing on the following terms?
-			</TextBlock>
+			<!-- Title -->
+			<Border Padding="0 8 0 8">
+				<TextBlock HorizontalAlignment="Center"
+				           VerticalAlignment="Top"
+				           FontWeight="SemiBold"
+				           FontSize="18">
+					Confirm leasing on the following terms?
+				</TextBlock>
+			</Border>
 
-			<StackPanel Orientation="Vertical"
-			            Margin="20,0,20,0">
-				<Grid>
-					<Label Content="Car"
-					       HorizontalAlignment="Left"
-					       Margin="0,0,0,0"
-					       VerticalAlignment="Top"
-					       Height="28"
-					       Width="148"
-					       Foreground="Black" />
+			<!-- Contents -->
+			<Border Padding="0 8 0 8">
+				<StackPanel Orientation="Horizontal"
+				            Margin="20,0,20,0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*" />
+							<ColumnDefinition Width="2*" />
+						</Grid.ColumnDefinitions>
 
-					<Label x:Name="ConfirmationCarComboName"
-					       Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-					       HorizontalAlignment="Right"
-					       VerticalAlignment="Top"
-					       Margin="0,0,0,0"
-					       Height="28"
-					       Width="120"
-					       Foreground="Black" />
-				</Grid>
+						<StackPanel Orientation="Vertical">
+							<Label Content="Car"
+							       HorizontalAlignment="Stretch"
+							       VerticalAlignment="Stretch"
+							       Margin="0,0,0,0"
+							       Foreground="Black" />
+
+							<Label Content="Amount of months"
+							       HorizontalAlignment="Left"
+							       Margin="0,0,0,0"
+							       VerticalAlignment="Top"
+							       Height="28"
+							       Width="148"
+							       Foreground="Black" />
+
+							<Label Content="Lease until"
+							       HorizontalAlignment="Left"
+							       Margin="0,0,0,0"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+
+
+						</StackPanel>
+
+						<StackPanel Grid.Column="1" Orientation="Vertical">
+
+							<Label
+								Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
+
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Margin="0,0,0,0"
+								Foreground="Black" />
+
+							<Label Content="{Binding LeasingTerms.Leasing.Months, RelativeSource={RelativeSource AncestorType=UserControl}}"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Stretch"
+							       Margin="0,0,0,0"
+							       Foreground="Black" />
+
+							<Label Content="{Binding LeasingTerms.Leasing.To, RelativeSource={RelativeSource AncestorType=UserControl}}"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Stretch"
+							       Margin="0,0,0,0"
+							       Foreground="Black" />
+						</StackPanel>
+
+					</Grid>
+				</StackPanel>
+
+			</Border>
+
+			<!-- Buttons -->
+			<Border Padding="0 8 0 8">
 				<Grid>
-					<Label Content="Amount of months"
-					       HorizontalAlignment="Left"
-					       Margin="0,0,0,0"
-					       VerticalAlignment="Top"
-					       Height="28"
-					       Width="148"
-					       Foreground="Black" />
-					<Label x:Name="ConfirmationMonthsAmount"
-					       Content="{Binding LeasingTerms.Leasing.Months, RelativeSource={RelativeSource AncestorType=UserControl}}"
-					       HorizontalAlignment="Right"
-					       VerticalAlignment="Top"
-					       Margin="0,0,0,0"
-					       Height="28"
-					       Width="120"
-					       Foreground="Black" />
-				</Grid>
-				<Grid>
-					<Label Content="Lease until"
-					       HorizontalAlignment="Left"
-					       Margin="0,0,0,0"
-					       VerticalAlignment="Top"
-					       Height="28"
-					       Width="148"
-					       Foreground="Black" />
-					<Label x:Name="ConfirmationLeaseUntil"
-					       Content="{Binding LeasingTerms.Leasing.To, RelativeSource={RelativeSource AncestorType=UserControl}}"
-					       HorizontalAlignment="Right"
-					       VerticalAlignment="Top"
-					       Margin="0,0,0,0"
-					       Height="28"
-					       Width="120"
-					       Foreground="Black" />
-				</Grid>
-				<Grid Margin="20,0,20,0">
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 						<Button Command="{Binding AcceptLeasingConditionCommand}"
 						        BorderThickness="0"
@@ -86,7 +101,7 @@
 						        FontWeight="Medium"
 						        FontFamily="Montserrat"
 						        Cursor="Hand"
-						        Margin="4,30,4,0"
+						        Margin="4,0,4,0"
 						        HorizontalAlignment="Left">
 							<Button.Style>
 								<Style TargetType="Button">
@@ -117,9 +132,8 @@
 						        FontSize="12"
 						        FontWeight="Medium"
 						        FontFamily="Montserrat"
-						        Cursor="Hand"
-						        Margin="4,30,4,0"
-						        HorizontalAlignment="Left">
+						        Margin="4,0,4,0"
+						        Cursor="Hand">
 							<Button.Style>
 								<Style TargetType="Button">
 									<Setter Property="Background" Value="#509A10" />
@@ -143,7 +157,8 @@
 						</Button>
 					</StackPanel>
 				</Grid>
-			</StackPanel>
+
+			</Border>
 
 		</StackPanel>
 

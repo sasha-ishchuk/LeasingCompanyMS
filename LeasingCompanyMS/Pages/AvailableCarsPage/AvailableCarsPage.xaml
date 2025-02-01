@@ -18,8 +18,8 @@
 	<Grid>
 		<!-- Available car information -->
 		<StackPanel>
-			<ComboBox ItemsSource="{Binding Cars}"
-			          SelectedItem="{Binding SelectedCar}" />
+			<ComboBox ItemsSource="{Binding AvailableCars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+			          SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 			<Image HorizontalAlignment="Left" />
 			<Border Margin="0,16,0,0">
 				<StackPanel>
