@@ -8,19 +8,20 @@
       xmlns:manageCarsPage="clr-namespace:LeasingCompanyMS.Pages.ManageCarsPage"
       xmlns:managePaymentsPage="clr-namespace:LeasingCompanyMS.Pages.ManagePaymentsPage"
       xmlns:mainMenuLayout="clr-namespace:LeasingCompanyMS.Layouts.MainMenuLayout"
+      xmlns:availableCarsPage="clr-namespace:LeasingCompanyMS.Pages.AvailableCarsPage"
       mc:Ignorable="d"
       Title="MainMenuView"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch">
 	<Page.DataContext>
-		<mainMenuLayout:MainMenuLayoutViewModel/>
+		<mainMenuLayout:MainMenuLayoutViewModel />
 	</Page.DataContext>
-	
+
 	<Page.Resources>
 		<mainMenuLayout:RoleToVisibilityConverter x:Key="RoleToVisibilityConverter" />
-		<mainMenuLayout:RoleToNameConverter x:Key="RoleToNameConverter" /> 
+		<mainMenuLayout:RoleToNameConverter x:Key="RoleToNameConverter" />
 	</Page.Resources>
-	
+
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition MaxWidth="256" />
@@ -36,26 +37,26 @@
 			</Border.Background>
 
 			<DockPanel
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Left"
-                Height="Auto"
-                >
-				
+				VerticalAlignment="Stretch"
+				HorizontalAlignment="Left"
+				Height="Auto">
+
 				<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-					<TextBlock Text="{Binding CurrentPrincipal, Converter={StaticResource RoleToNameConverter}, ConverterParameter=admin}"
-					           Margin="10 10 10 10"
-					           Foreground="{StaticResource titleColor2}"
-					           FontSize="20"
-					           FontFamily="Montserrat"
-					           FontWeight="Medium"
-					           VerticalAlignment="Center" />
+					<TextBlock
+						Text="{Binding CurrentPrincipal, Converter={StaticResource RoleToNameConverter}, ConverterParameter=admin}"
+						Margin="10 10 10 10"
+						Foreground="{StaticResource titleColor2}"
+						FontSize="20"
+						FontFamily="Montserrat"
+						FontWeight="Medium"
+						VerticalAlignment="Center" />
 				</StackPanel>
 
 				<RadioButton Name="ManageCarsRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
 				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}"
-                             DockPanel.Dock="Top">
+				             DockPanel.Dock="Top">
 					<TextBlock Text="Manage Cars"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -65,7 +66,7 @@
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
 				             Visibility="{Binding CurrentPrincipal, Converter={StaticResource RoleToVisibilityConverter}, ConverterParameter=admin}"
-                             DockPanel.Dock="Top">
+				             DockPanel.Dock="Top">
 					<TextBlock Text="Manage Clients"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -74,7 +75,7 @@
 				<RadioButton Name="CarsAvailableRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
-                             DockPanel.Dock="Top">
+				             DockPanel.Dock="Top">
 					<TextBlock Text="Cars Available"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
@@ -83,23 +84,22 @@
 				<RadioButton Name="LeasingInformationRadioButton"
 				             Style="{StaticResource menuButton}"
 				             Tag="{StaticResource borderColor2}"
-                             DockPanel.Dock="Top">
+				             DockPanel.Dock="Top">
 					<TextBlock Text="Leasing Information"
 					           Margin="10,0,0,0"
 					           Style="{StaticResource menuButtonText}" />
 				</RadioButton>
 
-                <RadioButton Name="LogoutButton"
-                             Style="{StaticResource menuButton}"
-                             Tag="{StaticResource borderColor2}"
-                             VerticalAlignment="Bottom"
-                             DockPanel.Dock="Bottom"
-                             Click="LogoutAction">
-                    <TextBlock Text="Logout"
-                               Margin="10,0,0,0"
-                               Style="{StaticResource menuButtonText}"
-                               />
-                </RadioButton>
+				<RadioButton Name="LogoutButton"
+				             Style="{StaticResource menuButton}"
+				             Tag="{StaticResource borderColor2}"
+				             VerticalAlignment="Bottom"
+				             DockPanel.Dock="Bottom"
+				             Click="LogoutAction">
+					<TextBlock Text="Logout"
+					           Margin="10,0,0,0"
+					           Style="{StaticResource menuButtonText}" />
+				</RadioButton>
 			</DockPanel>
 		</Border>
 
@@ -113,9 +113,9 @@
 
 			<Frame Content="{Binding}">
 				<Frame.Resources>
-					<DataTemplate x:Key="BrowseCarsPage"
-					              DataType="{x:Type browseCarsPage:BrowseCarsPage}">
-						<browseCarsPage:BrowseCarsPage />
+					<DataTemplate x:Key="AvailableCarsPage"
+					              DataType="{x:Type availableCarsPage:AvailableCarsPage}">
+						<availableCarsPage:AvailableCarsPage />
 					</DataTemplate>
 					<DataTemplate x:Key="ClientsInformationPage"
 					              DataType="{x:Type clientsInformationPage:ClientsInformationPage}">
@@ -133,7 +133,7 @@
 
 				<Frame.Style>
 					<Style TargetType="{x:Type Frame}">
-						<Setter Property="ContentTemplate" Value="{StaticResource BrowseCarsPage}" />
+						<Setter Property="ContentTemplate" Value="{StaticResource AvailableCarsPage}" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding IsChecked, ElementName=ManageCarsRadioButton}" Value="True">
 								<Setter Property="ContentTemplate" Value="{StaticResource ManageCarsPage}" />
@@ -144,7 +144,7 @@
 							</DataTrigger>
 
 							<DataTrigger Binding="{Binding IsChecked, ElementName=CarsAvailableRadioButton}" Value="True">
-								<Setter Property="ContentTemplate" Value="{StaticResource BrowseCarsPage}" />
+								<Setter Property="ContentTemplate" Value="{StaticResource AvailableCarsPage}" />
 							</DataTrigger>
 
 							<DataTrigger Binding="{Binding IsChecked, ElementName=LeasingInformationRadioButton}" Value="True">

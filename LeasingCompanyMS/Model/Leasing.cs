@@ -13,4 +13,8 @@ public record Leasing {
     public bool IsActive() {
         return DateTime.Now > From && DateTime.Now < To;
     }
+
+    public override string ToString() {
+        return $"{Id} - {From} - {To}";
+    }
 }

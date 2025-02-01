@@ -1,54 +1,48 @@
 ﻿using System.IO;
 using LeasingCompanyMS.Utils;
+using static System.Guid;
 
 namespace LeasingCompanyMS.Model.Repositories;
 
 using IUsersRepository = IRepository<User, string, UsersFilter>;
 
 public class UsersRepository : IUsersRepository {
-    private static List<User> _users = LoadUsers();
-    
-    private static List<User> LoadUsers() {
-        var usersJson = JsonUtils.ReadFromJson(GetPathToUsersJson());
-        return JsonUtils.MapJsonStringToUserList(usersJson);
-    }
-    
-    private static string GetPathToUsersJson() {
-        var projectPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-        if (projectPath == null) throw new Exception("Project path not found");
-        return Path.Combine(projectPath, "Json", "users.json");
+    private readonly List<User> _users;
+    private readonly string _usersFilePath;
+
+    public UsersRepository(string usersFilePath = "users.json") {
+        _usersFilePath = usersFilePath;
+
+        var usersJson = File.ReadAllText(_usersFilePath);
+        _users = JsonUtils.MapJsonStringToUserList(usersJson);
     }
 
-    // Oof.
-    public bool AuthenticateUser(string username, string password) {
-        List<User> users = GetAll();
-        foreach (var user in users)
-            if (user.Username == username && user.Password == password)
-                return true;
-
-        return false;
+    private void UpdateUsersFileContents() {
+        var stringifiedJsonUsers = JsonUtils.MapUserListToJsonString(_users);
+        File.AppendText(_usersFilePath).Write(stringifiedJsonUsers);
     }
 
     public void Add(User user) {
+        user.Id = NewGuid().ToString();
         _users.Add(user);
-        JsonUtils.WriteToJson(JsonUtils.MapUserListToJsonString(_users), GetPathToUsersJson());
-        _users = LoadUsers();
+
+        UpdateUsersFileContents();
     }
-    
+
     public List<User> GetAll() {
         return _users;
     }
 
     public List<User> Get(UsersFilter usersFilter) {
         return _users.FindAll(user => {
-            return usersFilter.Id != null ? user.Id == usersFilter.Id : true
-                && usersFilter.Username != null ? user.Username == usersFilter.Username : true
-                && usersFilter.Password != null ? user.Password == usersFilter.Password : true
-                && usersFilter.Role != null ? user.Role == usersFilter.Role : true;
+            return (usersFilter.Id == null || usersFilter.Id == user.Id)
+                   && (usersFilter.Username == null || usersFilter.Username == user.Username)
+                   && (usersFilter.Password == null || usersFilter.Password == user.Password)
+                   && (usersFilter.Role == null || usersFilter.Role == user.Role);
         });
     }
 
     public User? GetById(string id) {
-        return Get(new UsersFilter() {Id = id}).FirstOrDefault();
+        return Get(new UsersFilter { Id = id }).FirstOrDefault();
     }
 }
