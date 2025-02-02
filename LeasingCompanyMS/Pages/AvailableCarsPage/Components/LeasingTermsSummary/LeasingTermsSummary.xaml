@@ -44,12 +44,10 @@
 							       Margin="0,0,0,0"
 							       Foreground="Black" />
 
-							<Label Content="Amount of months"
+							<Label Content="Leasing duration (in months)"
 							       HorizontalAlignment="Left"
 							       Margin="0,0,0,0"
 							       VerticalAlignment="Top"
-							       Height="28"
-							       Width="148"
 							       Foreground="Black" />
 
 							<Label Content="Lease until"
@@ -65,7 +63,6 @@
 
 							<Label
 								Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
-
 								HorizontalAlignment="Left"
 								VerticalAlignment="Stretch"
 								Margin="0,0,0,0"
@@ -93,7 +90,7 @@
 			<Border Padding="0 8 0 8">
 				<Grid>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-						<Button Command="{Binding AcceptLeasingConditionCommand}"
+						<Button Command="{Binding AcceptLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
 						        BorderThickness="0"
 						        Content="Confirm"
 						        Foreground="White"
@@ -125,7 +122,7 @@
 							</Button.Template>
 						</Button>
 
-						<Button Command="{Binding CloseLeaseCarDialogCommand}"
+						<Button Command="{Binding RejectLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
 						        BorderThickness="0"
 						        Content="Cancel"
 						        Foreground="White"
@@ -161,7 +158,5 @@
 			</Border>
 
 		</StackPanel>
-
 	</Border>
-
 </UserControl>

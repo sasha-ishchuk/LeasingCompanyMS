@@ -15,17 +15,12 @@ using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
     private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
     private readonly ILeasingsRepository _leasingsRepository = App.ServiceProvider.GetService<ILeasingsRepository>()!;
+    
     private Car? _selectedCar;
-    private List<Car> _availableCars;
-
+    private List<Car>? _availableCars;
     private LeasingTerms? _leasingTerms;
     private Visibility _isLeaseCarDialogOpen = Visibility.Collapsed;
     private DateTime? _leaseUntil;
-    
-    private List<Car> GetAvailableCars() {
-        var leasings = _leasingsRepository.Get(new LeasingsFilter { IsActive = true });
-        return _carsRepository.GetAll().FindAll(car => leasings.All(leasing => car.Id != leasing.CarId));
-    }
     
     public AvailableCarsPageViewModel() {
         OpenLeaseCarDialogCommand =
@@ -62,7 +57,7 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
         }
     }
 
-    public List<Car> AvailableCars {
+    public List<Car>? AvailableCars {
         get => _availableCars;
         set {
             _availableCars = value;
@@ -119,6 +114,11 @@ public sealed class AvailableCarsPageViewModel : INotifyPropertyChanged {
         return IsLeaseCarDialogOpen == Visibility.Visible && LeaseUntil is not null && SelectedCar is not null;
     }
 
+    private List<Car>? GetAvailableCars() {
+        var leasings = _leasingsRepository.Get(new LeasingsFilter { IsActive = true });
+        return _carsRepository.GetAll().FindAll(car => leasings.All(leasing => car.Id != leasing.CarId));
+    }
+    
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null) {

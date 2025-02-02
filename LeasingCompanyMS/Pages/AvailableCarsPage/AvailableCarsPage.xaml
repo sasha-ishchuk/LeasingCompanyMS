@@ -18,112 +18,43 @@
 	<Grid>
 		<!-- Available car information -->
 		<StackPanel>
-			<ComboBox ItemsSource="{Binding AvailableCars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-			          SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-			<Image HorizontalAlignment="Left" />
-			<Border Margin="0,16,0,0">
-				<StackPanel>
-					<!-- Make -->
-					<Border Margin="0,4,0,0" />
-					<StackPanel Orientation="Horizontal">
-						<Label Content="Make:" Foreground="White" />
-						<Label Content="{Binding SelectedCar.Mark}" Foreground="White" />
-					</StackPanel>
+			<DataGrid IsReadOnly="True"
+			          AutoGenerateColumns="False"
+			          ItemsSource="{Binding AvailableCars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+			          SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Make" Width="*" Binding="{Binding Mark}" />
+					<DataGridTextColumn Header="Model" Width="*" Binding="{Binding Model}" />
+					<DataGridTextColumn Header="Year of production" Width="*" Binding="{Binding Year}" />
+					<DataGridTextColumn Header="Mileage" Width="*" />
+					<DataGridTextColumn Header="Registration" Width="*" Binding="{Binding Registration}" />
+					<DataGridTextColumn Header="VIN" Width="*" Binding="{Binding VIN}" />
+					<DataGridTextColumn Header="MonthlyLease" Width="*" Binding="{Binding MonthlyLease}" />
+				</DataGrid.Columns>
+			</DataGrid>
 
-					<!-- Model -->
-					<Border Margin="0,4,0,0" />
-					<StackPanel Orientation="Horizontal">
-						<Label Content="Model:" Foreground="White" />
-						<Label Content="{Binding SelectedCar.Model}" Foreground="White" />
-					</StackPanel>
+			<Border Height="16"/>
+			
+			<Button Command="{Binding OpenLeaseCarDialogCommand}"
+			        Style="{StaticResource controlButton}"
+			        HorizontalAlignment="Left"
+			        Content="Lease"
+			        Foreground="White"
+			        Padding="32 8 32 8" />
 
-					<!-- Year of production -->
-					<Border Margin="0,4,0,0">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Year of production:" Foreground="White" />
-							<Label Content="{Binding SelectedCar.Year}" Foreground="White" />
-						</StackPanel>
-					</Border>
-
-					<!-- Registration number -->
-					<Border Margin="0,4,0,0">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Registration number:" Foreground="White" />
-							<Label Content="{Binding SelectedCar.Registration}" Foreground="White" />
-						</StackPanel>
-					</Border>
-
-					<!-- VIN -->
-					<Border Margin="0,8,0,0">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Make:" Foreground="White" />
-							<Label Content="{Binding SelectedCar.VIN}" Foreground="White" />
-						</StackPanel>
-					</Border>
-
-					<!-- Monthly lease cost -->
-					<Border Margin="0,8,0,0">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Monthly lease costs:" Foreground="White" />
-							<Label Content="{Binding SelectedCar.MonthlyLease}" Foreground="White" />
-						</StackPanel>
-					</Border>
-
-					<!-- Lease cost -->
-					<Border Margin="0,8,0,0">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Lease until"
-							       HorizontalAlignment="Left"
-							       VerticalAlignment="Top"
-							       Foreground="White" />
-							<DatePicker SelectedDate="{Binding LeaseUntil}"
-							            HorizontalAlignment="Right"
-							            VerticalAlignment="Center" />
-						</StackPanel>
-					</Border>
-
-					<Button Command="{Binding OpenLeaseCarDialogCommand}"
-					        BorderThickness="0"
-					        Content="Lease"
-					        Foreground="White"
-					        FontSize="12"
-					        FontWeight="Medium"
-					        FontFamily="Montserrat"
-					        Cursor="Hand"
-					        Margin="0,30,0,0"
-					        HorizontalAlignment="Left">
-						<Button.Style>
-							<Style TargetType="Button">
-								<Setter Property="Background" Value="#509A10" />
-								<Style.Triggers>
-									<Trigger Property="IsMouseOver" Value="True">
-										<Setter Property="Background" Value="#386C0B" />
-									</Trigger>
-								</Style.Triggers>
-							</Style>
-						</Button.Style>
-						<Button.Template>
-							<ControlTemplate TargetType="Button">
-								<Border Width="100" Height="30"
-								        CornerRadius="8"
-								        Background="{TemplateBinding Background}">
-									<ContentPresenter VerticalAlignment="Center"
-									                  HorizontalAlignment="Center" />
-								</Border>
-							</ControlTemplate>
-						</Button.Template>
-					</Button>
-				</StackPanel>
-			</Border>
 		</StackPanel>
+
 
 		<!-- Leasing overlay -->
 		<!-- NOTE(piotr.klosowski): This should be separate view and navigation should be handled differently -->
 		<Grid Visibility="{Binding IsLeaseCarDialogOpen}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<Grid Background="Black" Opacity="0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-			<leasingTermsSummary:LeasingTermsSummary LeasingTerms="{Binding  LeasingTerms}"
-			                                         HorizontalAlignment="Center"
-			                                         VerticalAlignment="Center" />
+			<leasingTermsSummary:LeasingTermsSummary
+				LeasingTerms="{Binding  LeasingTerms}"
+				AcceptLeasingTermsCommand="{Binding AcceptLeasingConditionCommand}"
+				RejectLeasingTermsCommand="{Binding CloseLeaseCarDialogCommand}"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center" />
 		</Grid>
 	</Grid>
 </Page>
