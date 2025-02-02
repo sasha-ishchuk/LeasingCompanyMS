@@ -17,17 +17,17 @@ namespace LeasingCompanyMSTest.Utils
         [TestMethod]
         public void ReadUsersFromJson_WhenFileExists_ThenReturnsJsonString() {
             // given
-            string result = JsonUtils.ReadFromJson(_jsonFilePath);
+            var result = JsonUtils.ReadFromJson(_jsonFilePath);
             // when/then
             Assert.IsNotNull(result);
-            string expectedJson = File.ReadAllText(_jsonFilePath);
+            var expectedJson = File.ReadAllText(_jsonFilePath);
             Assert.AreEqual(expectedJson, result);
         }
 
         [TestMethod]
         public void ReadUsersFromJson_WhenFileDoesNotExist_ThenThrowsFileNotFoundException() {
             // given
-            string nonExistentFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "nonexistent.json");
+            var nonExistentFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Json", "nonexistent.json");
             // when/then
             Assert.ThrowsException<FileNotFoundException>(() => JsonUtils.ReadFromJson(nonExistentFilePath));
         }
@@ -41,11 +41,12 @@ namespace LeasingCompanyMSTest.Utils
         [TestMethod]
         public void MapJsonStringToUserList_WhenJsonStringIsValid_ThenReturnsUserList() {
             // given
-            string jsonString = File.ReadAllText(_jsonFilePath);
+            var jsonString = File.ReadAllText(_jsonFilePath);
             // when
-            List<User> result = JsonUtils.MapJsonStringToUserList(jsonString);
+            var result = JsonUtils.MapJsonStringToUserList(jsonString);
             // then
             Assert.IsNotNull(result);
+            Assert.AreEqual(result.GetType(), typeof(List<User>));
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual("test", result[0].Username);
             Assert.AreEqual("test", result[0].Password);
@@ -55,18 +56,19 @@ namespace LeasingCompanyMSTest.Utils
         [TestMethod]
         public void MapJsonStringToUserList_WhenJsonStringIsEmpty_ThenReturnsEmptyList() {
             // given
-            string jsonString = "[]";
+            var jsonString = "[]";
             // when
-            List<User> result = JsonUtils.MapJsonStringToUserList(jsonString);
+            var result = JsonUtils.MapJsonStringToUserList(jsonString);
             // then
             Assert.IsNotNull(result);
+            Assert.AreEqual(result.GetType(), typeof(List<User>));
             Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
         public void MapJsonStringToUserList_WhenJsonStringIsInvalid_ThenThrowsJsonException() {
             // given
-            string invalidJsonString = "invalid json";
+            var invalidJsonString = "invalid json";
             // when/then
             Assert.ThrowsException<JsonException>(() => JsonUtils.MapJsonStringToUserList(invalidJsonString));
         }

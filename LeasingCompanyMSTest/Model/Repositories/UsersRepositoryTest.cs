@@ -1,4 +1,3 @@
-using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
 
 namespace LeasingCompanyMSTest.Model.Repositories {
@@ -31,7 +30,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
         [TestMethod]
         public void GetAll_ReturnsAllUsers() {
             // given/when
-            List<User> users = _usersRepository.GetAll();
+            var users = _usersRepository.GetAll();
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(3, users.Count);
@@ -40,7 +39,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
         [TestMethod]
         public void GetById_WhenUserExists_ThenReturnsUser() {
             // given/when
-            User? user = _usersRepository.GetById("1");
+            var user = _usersRepository.GetById("1");
             // then
             Assert.IsNotNull(user);
             Assert.AreEqual("user", user.Username);
@@ -51,7 +50,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
         [TestMethod]
         public void GetById_WhenUserDoesNotExist_ThenReturnsNull() {
             // given/when
-            User? user = _usersRepository.GetById("nonexistingid");
+            var user = _usersRepository.GetById("nonexistingid");
             // then
             Assert.IsNull(user);
         }
@@ -61,7 +60,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Role = "admin" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(1, users.Count);
@@ -75,7 +74,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Role = "role" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(0, users.Count);
@@ -86,7 +85,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Username = "admin" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(1, users.Count);
@@ -100,7 +99,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Username = "john_doe" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(0, users.Count);
@@ -111,7 +110,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Password = "admin" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(1, users.Count);
@@ -125,7 +124,7 @@ namespace LeasingCompanyMSTest.Model.Repositories {
             // given
             var filter = new UsersFilter { Password = "hello_world" };
             // when
-            List<User> users = _usersRepository.Get(filter);
+            var users = _usersRepository.Get(filter);
             // then
             Assert.IsNotNull(users);
             Assert.AreEqual(0, users.Count);

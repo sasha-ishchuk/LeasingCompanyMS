@@ -1,5 +1,4 @@
-﻿using LeasingCompanyMS.Model;
-using LeasingCompanyMS.Model.Repositories;
+﻿using LeasingCompanyMS.Model.Repositories;
 
 namespace LeasingCompanyMSTest.Model.Repositories;
 
@@ -10,7 +9,7 @@ public class CarsRepositoryTest {
     [TestMethod]
     public void GetAll_ReturnsAllCars() {
         // given/when
-        List<Car> cars = _carsRepository.GetAll();
+        var cars = _carsRepository.GetAll();
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(10, cars.Count);
@@ -19,7 +18,7 @@ public class CarsRepositoryTest {
     [TestMethod]
     public void GetById_WhenCarExists_ThenReturnsCar() {
         // given/when
-        Car? car = _carsRepository.GetById("1");
+        var car = _carsRepository.GetById("1");
         // then
         Assert.IsNotNull(car);
         Assert.AreEqual("DWR7351", car.Registration);
@@ -32,7 +31,7 @@ public class CarsRepositoryTest {
     [TestMethod]
     public void GetById_WhenCarDoesNotExist_ThenReturnsNull() {
         // given/when
-        Car? car = _carsRepository.GetById("nonexistingid");
+        var car = _carsRepository.GetById("nonexistingid");
         // then
         Assert.IsNull(car);
     }
@@ -42,7 +41,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Registration = "KWA5516" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(1, cars.Count);
@@ -59,7 +58,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Registration = "KRK777" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(0, cars.Count);
@@ -70,7 +69,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Mark = "Mazda" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(1, cars.Count);
@@ -87,7 +86,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Mark = "BatmanCar" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(0, cars.Count);
@@ -98,7 +97,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Model = "CX-5" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(1, cars.Count);
@@ -115,7 +114,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Model = "UJ" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(0, cars.Count);
@@ -126,7 +125,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Year = 2016 };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(1, cars.Count);
@@ -143,7 +142,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { Year = 2077 };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(0, cars.Count);
@@ -154,7 +153,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { VIN = "BF9MR42V8EBR67858" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(1, cars.Count);
@@ -171,7 +170,7 @@ public class CarsRepositoryTest {
         // given
         var filter = new CarsFilter() { VIN = "000000111111" };
         // when
-        List<Car> cars = _carsRepository.Get(filter);
+        var cars = _carsRepository.Get(filter);
         // then
         Assert.IsNotNull(cars);
         Assert.AreEqual(0, cars.Count);
