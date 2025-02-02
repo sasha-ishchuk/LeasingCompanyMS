@@ -1,17 +1,20 @@
 [
     {
+        "Id": "0",
         "CarId": 0,
         "User": "user",
+        "UserId": "1",
         "From": "2024-12-01T00:00:00",
-        "To": "2024-12-31T00:00:00",
-        "Conditions": ""
+        "To": "2029-12-31T00:00:00",
+        "Conditions": "Condition A"
     },
     {
+        "Id": "1",
         "CarId": 1,
         "User": "michal",
+        "UserId": "2",
         "From": "2025-01-01T00:00:00",
         "To": "2025-01-31T00:00:00",
-        "Conditions": ""
+        "Conditions": "Condition B"
     }
-
 ]
