@@ -32,8 +32,6 @@ public class ManagePaymentsPageViewModel : INotifyPropertyChanged {
         }
     }
     
-    public string? MonthlyLease => _carsRepository.GetAll().Find(car => car.Id == SelectedLeasing.CarId).MonthlyLease.ToString();
-
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) {

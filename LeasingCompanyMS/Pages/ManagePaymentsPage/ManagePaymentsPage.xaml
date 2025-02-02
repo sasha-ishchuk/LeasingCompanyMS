@@ -40,7 +40,7 @@
                     </Grid>
                     <Grid>
                         <Label Content="Months left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"  Height="28" Width="148" Foreground="White"/>
-                        <Label x:Name="leasingLeft" Content="{Binding SelectedLeasing.Months}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"  Height="28" Width="148" Grid.Row="4" Grid.Column="2" Foreground="White"/>
+                        <Label x:Name="leasingLeft" Content="{Binding SelectedLeasing.LeasingDurationInMonths}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"  Height="28" Width="148" Grid.Row="4" Grid.Column="2" Foreground="White"/>
                     </Grid>
                     <Grid Margin="0, 0, 0, 0">
                         <Label Content="Monthly lease" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"  Height="28" Width="148" Foreground="White"/>

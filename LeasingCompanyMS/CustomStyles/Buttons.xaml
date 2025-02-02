@@ -54,23 +54,24 @@
 	<!-- Control bar button -->
 	<Style x:Key="controlButton" TargetType="Button">
 		<!-- Default -->
-		<Setter Property="Background" Value="{StaticResource panelActiveColor}" />
+		<Setter Property="Foreground" Value="{StaticResource titleColor1}" />
+		<Setter Property="Background" Value="#509A10" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 					<Border CornerRadius="8"
 					        Padding="{TemplateBinding Padding}"
-					        Background="{TemplateBinding Background}">
-						<ContentPresenter VerticalAlignment="Center"
-						                  HorizontalAlignment="Center" />
+					        Background="{TemplateBinding Background}"
+					        VerticalAlignment="Stretch"
+					        HorizontalAlignment="Stretch">
+						<ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
 		<Style.Triggers>
-			<!-- Hovered -->
 			<Trigger Property="IsMouseOver" Value="True">
-				<Setter Property="Background" Value="{StaticResource panelOverColor}" />
+				<Setter Property="Background" Value="#386C0B" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>

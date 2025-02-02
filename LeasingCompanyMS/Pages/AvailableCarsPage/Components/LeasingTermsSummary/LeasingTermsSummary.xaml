@@ -38,120 +38,84 @@
 						</Grid.ColumnDefinitions>
 
 						<StackPanel Orientation="Vertical">
-							<Label Content="Car"
+							<Label Content="Selected car:"
 							       HorizontalAlignment="Stretch"
 							       VerticalAlignment="Stretch"
-							       Margin="0,0,0,0"
 							       Foreground="Black" />
 
-							<Label Content="Leasing duration (in months)"
+							<Label Content="Down payment:"
 							       HorizontalAlignment="Left"
-							       Margin="0,0,0,0"
 							       VerticalAlignment="Top"
 							       Foreground="Black" />
 
-							<Label Content="Lease until"
+							<Label Content="Leasing duration (in months):"
 							       HorizontalAlignment="Left"
-							       Margin="0,0,0,0"
 							       VerticalAlignment="Top"
 							       Foreground="Black" />
 
+							<Label Content="Yearly mileage limit:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
 
+							<Label Content="Monthly lease installment:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
 						</StackPanel>
 
 						<StackPanel Grid.Column="1" Orientation="Vertical">
-
 							<Label
 								Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
 								HorizontalAlignment="Left"
 								VerticalAlignment="Stretch"
-								Margin="0,0,0,0"
 								Foreground="Black" />
 
-							<Label Content="{Binding LeasingTerms.Leasing.Months, RelativeSource={RelativeSource AncestorType=UserControl}}"
+							<Label Content="{Binding LeasingTerms.DownPayment, RelativeSource={RelativeSource AncestorType=UserControl}}"
 							       HorizontalAlignment="Left"
 							       VerticalAlignment="Stretch"
-							       Margin="0,0,0,0"
 							       Foreground="Black" />
 
-							<Label Content="{Binding LeasingTerms.Leasing.To, RelativeSource={RelativeSource AncestorType=UserControl}}"
-							       HorizontalAlignment="Left"
-							       VerticalAlignment="Stretch"
-							       Margin="0,0,0,0"
-							       Foreground="Black" />
+							<Label
+								Content="{Binding LeasingTerms.LeasingDurationInMonths, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+
+							<Label
+								Content="{Binding LeasingTerms.YearlyMileageLimit, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+
+							<Label
+								Content="{Binding LeasingTerms.MonthlyLeaseInstallment, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
 						</StackPanel>
-
 					</Grid>
 				</StackPanel>
-
 			</Border>
 
 			<!-- Buttons -->
 			<Border Padding="0 8 0 8">
 				<Grid>
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-						<Button Command="{Binding AcceptLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-						        BorderThickness="0"
-						        Content="Confirm"
-						        Foreground="White"
-						        FontSize="12"
-						        FontWeight="Medium"
-						        FontFamily="Montserrat"
-						        Cursor="Hand"
-						        Margin="4,0,4,0"
-						        HorizontalAlignment="Left">
-							<Button.Style>
-								<Style TargetType="Button">
-									<Setter Property="Background" Value="#509A10" />
-									<Style.Triggers>
-										<Trigger Property="IsMouseOver" Value="True">
-											<Setter Property="Background" Value="#386C0B" />
-										</Trigger>
-									</Style.Triggers>
-								</Style>
-							</Button.Style>
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<Border Width="100" Height="30"
-									        CornerRadius="8"
-									        Background="{TemplateBinding Background}">
-										<ContentPresenter VerticalAlignment="Center"
-										                  HorizontalAlignment="Center" />
-									</Border>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
+						<Button Content="Confirm"
+						        Command="{Binding AcceptLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
 
-						<Button Command="{Binding RejectLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-						        BorderThickness="0"
-						        Content="Cancel"
-						        Foreground="White"
-						        FontSize="12"
-						        FontWeight="Medium"
-						        FontFamily="Montserrat"
-						        Margin="4,0,4,0"
-						        Cursor="Hand">
-							<Button.Style>
-								<Style TargetType="Button">
-									<Setter Property="Background" Value="#509A10" />
-									<Style.Triggers>
-										<Trigger Property="IsMouseOver" Value="True">
-											<Setter Property="Background" Value="#386C0B" />
-										</Trigger>
-									</Style.Triggers>
-								</Style>
-							</Button.Style>
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<Border Width="100" Height="30"
-									        CornerRadius="8"
-									        Background="{TemplateBinding Background}">
-										<ContentPresenter VerticalAlignment="Center"
-										                  HorizontalAlignment="Center" />
-									</Border>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
+						<Border Width="16" />
+
+						<Button Content="Cancel"
+						        Command="{Binding RejectLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Background="Firebrick"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
 					</StackPanel>
 				</Grid>
 

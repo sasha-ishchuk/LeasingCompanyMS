@@ -12,7 +12,7 @@ public class CarToStringConverter : IValueConverter {
             return "";
         }
         
-        return $"{car.Mark} {car.Model} ({car.Year})";
+        return $"{car.Brand} {car.Model} ({car.ProductionYear})";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

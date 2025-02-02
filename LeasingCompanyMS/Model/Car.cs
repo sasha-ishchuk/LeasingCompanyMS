@@ -1,15 +1,21 @@
-﻿namespace LeasingCompanyMS.Model;
+﻿using System.Text.Json.Serialization;
+
+namespace LeasingCompanyMS.Model;
 
 public record Car {
-    public string Id { get; set; }
-    public string Registration { get; set; }
-    public string Mark { get; set; }
-    public string Model { get; set; }
-    public int Year { get; set; }
-    public string VIN { get; set; }
-    public int MonthlyLease { get; set; }
+    [JsonPropertyName("id")] public string Id { get; set; }
+    [JsonPropertyName("brand")] public string Brand { get; set; }
+    [JsonPropertyName("model")] public string Model { get; set; }
+    [JsonPropertyName("production_year")] public int ProductionYear { get; set; }
 
-    public override string ToString() {
-        return $"{Id} {Registration} {Mark} {Model} {Year} {MonthlyLease} {VIN}";
-    }
+    [JsonPropertyName("registration_number")]
+    public string? RegistrationNumber { get; set; }
+
+    [JsonPropertyName("body_color")] public string BodyColor { get; set; }
+    [JsonPropertyName("engine")] public Engine Engine { get; set; }
+    [JsonPropertyName("vin")] public string Vin { get; set; }
+    [JsonPropertyName("packages")] public List<string> Packages { get; set; }
+
+    [JsonPropertyName("estimated_net_value")]
+    public int EstimatedNetValue { get; set; }
 }
