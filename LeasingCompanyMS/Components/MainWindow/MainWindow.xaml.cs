@@ -5,13 +5,13 @@ using System.Windows.Navigation;
 namespace LeasingCompanyMS.Components.MainWindow;
 
 public partial class MainWindow : Window {
-    public static NavigationService NavigationService =>
-        ((MainWindow)Application.Current.MainWindow).MainWindowFrame.NavigationService;
-
     // MainWindow ...
     public MainWindow() {
         InitializeComponent();
     }
+
+    public static NavigationService NavigationService =>
+        ((MainWindow)Application.Current.MainWindow).MainWindowFrame.NavigationService;
 
     // HandleMinimizeWindow ...
     private void HandleMinimizeWindow(object sender, RoutedEventArgs e) {
@@ -37,16 +37,16 @@ public partial class MainWindow : Window {
             default:
                 HandleApplicationBarDoubleClick(sender, e);
                 break;
-        } 
+        }
     }
 
     private void HandleApplicationBarDoubleClick(object sender, MouseButtonEventArgs e) {
         WindowState = WindowState switch {
             WindowState.Normal => WindowState.Maximized,
-            _ => WindowState.Normal,
+            _ => WindowState.Normal
         };
     }
-    
+
     private void HandleApplicationBarDrag(object sender, MouseButtonEventArgs e) {
         DragMove();
     }

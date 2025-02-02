@@ -10,18 +10,36 @@ public static class JsonUtils {
         return File.ReadAllText(jsonFilePath);
     }
 
+    public static void WriteToJson(string jsonString, string jsonFilePath) {
+        if (string.IsNullOrEmpty(jsonFilePath)) throw new ArgumentNullException(nameof(jsonFilePath));
+
+        File.WriteAllText(jsonFilePath, jsonString);
+    }
+
     public static List<User> MapJsonStringToUserList(string jsonString) {
-        List<User>? users = JsonSerializer.Deserialize<List<User>>(jsonString);
+        var users = JsonSerializer.Deserialize<List<User>>(jsonString);
         return users ?? new List<User>();
     }
 
     public static List<Car> MapJsonStringToCarList(string jsonString) {
-        List<Car>? cars = JsonSerializer.Deserialize<List<Car>>(jsonString);
+        var cars = JsonSerializer.Deserialize<List<Car>>(jsonString);
         return cars ?? new List<Car>();
     }
 
     public static List<Leasing> MapJsonStringToLeasingList(string jsonString) {
-        List<Leasing>? leasings = JsonSerializer.Deserialize<List<Leasing>>(jsonString)!;
+        var leasings = JsonSerializer.Deserialize<List<Leasing>>(jsonString)!;
         return leasings ?? new List<Leasing>();
+    }
+
+    public static string MapCarListToJsonString(List<Car> carList) {
+        return JsonSerializer.Serialize(carList);
+    }
+
+    public static string MapLeasingListToJsonString(List<Leasing> leasingList) {
+        return JsonSerializer.Serialize(leasingList);
+    }
+    
+    public static string MapUserListToJsonString(List<User> userList) {
+        return JsonSerializer.Serialize(userList);
     }
 }

@@ -5,7 +5,8 @@
     "Mark": "Mazda",
     "Model": "CX-5",
     "Year": 2016,
-    "VIN": "BF9MR42V8EBR67858"
+    "VIN": "BF9MR42V8EBR67858",
+    "MonthlyLease": 500
   },
   {
     "Id": "1",
@@ -13,7 +14,8 @@
     "Mark": "Audi",
     "Model": "Q8",
     "Year": 2019,
-    "VIN": "LPA0LMHJ02JFW6040"
+    "VIN": "LPA0LMHJ02JFW6040",
+    "MonthlyLease": 500
   },
   {
     "Id": "2",
@@ -21,7 +23,8 @@
     "Mark": "BMW",
     "Model": "M5",
     "Year": 2020,
-    "VIN": "PM1M6AL60YHKB3977"
+    "VIN": "PM1M6AL60YHKB3977",
+    "MonthlyLease": 500
   },
   {
     "Id": "3",
@@ -29,7 +32,8 @@
     "Mark": "Maserati",
     "Model": "Ghibli",
     "Year": 2019,
-    "VIN": "LE4KJUUF66YDM9280"
+    "VIN": "LE4KJUUF66YDM9280",
+    "MonthlyLease": 500
   },
   {
     "Id": "4",
@@ -37,7 +41,8 @@
     "Mark": "Volvo",
     "Model": "XC90",
     "Year": 2023,
-    "VIN": "6MMWZCBJ1U0S99940"
+    "VIN": "6MMWZCBJ1U0S99940",
+    "MonthlyLease": 500
   },
   {
     "Id": "5",
@@ -45,7 +50,8 @@
     "Mark": "Toyota",
     "Model": "Corolla",
     "Year": 2015,
-    "VIN": "JT2BU4EE9FJ100100"
+    "VIN": "JT2BU4EE9FJ100100",
+    "MonthlyLease": 500
   },
   {
     "Id": "6",
@@ -53,7 +59,8 @@
     "Mark": "Volkswagen",
     "Model": "Golf",
     "Year": 2018,
-    "VIN": "WVWZZZ1JZDW010101"
+    "VIN": "WVWZZZ1JZDW010101",
+    "MonthlyLease": 500
   },
   {
     "Id": "7",
@@ -61,7 +68,8 @@
     "Mark": "Ford",
     "Model": "Focus",
     "Year": 2020,
-    "VIN": "WF0SXXGCBXJ010202"
+    "VIN": "WF0SXXGCBXJ010202",
+    "MonthlyLease": 500
   },
   {
     "Id": "8",
@@ -69,7 +77,8 @@
     "Mark": "BMW",
     "Model": "X5",
     "Year": 2017,
-    "VIN": "5UXKR2C58H0Y00000"
+    "VIN": "5UXKR2C58H0Y00000",
+    "MonthlyLease": 500
   },
   {
     "Id": "9",
@@ -77,6 +86,7 @@
     "Mark": "Mercedes-Benz",
     "Model": "E-Class",
     "Year": 2019,
-    "VIN": "WDD2130221F100500"
+    "VIN": "WDD2130221F100500",
+    "MonthlyLease": 500
   }
 ]

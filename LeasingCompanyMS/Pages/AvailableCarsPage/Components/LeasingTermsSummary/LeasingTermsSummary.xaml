@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="LeasingCompanyMS.Pages.Components.LeasingTermsSummary.LeasingTermsSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:LeasingCompanyMS.Converters"
+             mc:Ignorable="d">
+	<UserControl.Resources>
+		<converters:CarToStringConverter x:Key="CarToStringConverter" />
+	</UserControl.Resources>
+
+	<Border Padding="16"
+	        CornerRadius="8"
+	        Background="White"
+	        HorizontalAlignment="Stretch"
+	        VerticalAlignment="Stretch">
+		<StackPanel HorizontalAlignment="Stretch"
+		            VerticalAlignment="Stretch">
+
+			<!-- Title -->
+			<Border Padding="0 8 0 8">
+				<TextBlock HorizontalAlignment="Center"
+				           VerticalAlignment="Top"
+				           FontWeight="SemiBold"
+				           FontSize="18">
+					Confirm leasing on the following terms?
+				</TextBlock>
+			</Border>
+
+			<!-- Contents -->
+			<Border Padding="0 8 0 8">
+				<StackPanel Orientation="Horizontal"
+				            Margin="20,0,20,0">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*" />
+							<ColumnDefinition Width="2*" />
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Orientation="Vertical">
+							<Label Content="Selected car:"
+							       HorizontalAlignment="Stretch"
+							       VerticalAlignment="Stretch"
+							       Foreground="Black" />
+
+							<Label Content="Down payment:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+
+							<Label Content="Leasing duration (in months):"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+
+							<Label Content="Yearly mileage limit:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+
+							<Label Content="Monthly lease installment:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+						</StackPanel>
+
+						<StackPanel Grid.Column="1" Orientation="Vertical">
+							<Label
+								Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+
+							<Label Content="{Binding LeasingTerms.DownPayment, RelativeSource={RelativeSource AncestorType=UserControl}}"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Stretch"
+							       Foreground="Black" />
+
+							<Label
+								Content="{Binding LeasingTerms.LeasingDurationInMonths, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+
+							<Label
+								Content="{Binding LeasingTerms.YearlyMileageLimit, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+
+							<Label
+								Content="{Binding LeasingTerms.MonthlyLeaseInstallment, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
+						</StackPanel>
+					</Grid>
+				</StackPanel>
+			</Border>
+
+			<!-- Buttons -->
+			<Border Padding="0 8 0 8">
+				<Grid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Button Content="Confirm"
+						        Command="{Binding AcceptLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
+
+						<Border Width="16" />
+
+						<Button Content="Cancel"
+						        Command="{Binding RejectLeasingTermsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Background="Firebrick"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
+					</StackPanel>
+				</Grid>
+
+			</Border>
+
+		</StackPanel>
+	</Border>
+</UserControl>

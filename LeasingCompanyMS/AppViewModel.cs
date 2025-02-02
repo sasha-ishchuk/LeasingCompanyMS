@@ -6,13 +6,13 @@ using LeasingCompanyMS.Pages.LoginPage;
 namespace LeasingCompanyMS;
 
 public class AppViewModel : INotifyPropertyChanged {
+    private object? _content = new LoginPage();
+
     public AppViewModel() {
         SetContentCommand = new Command(value => Content = value);
     }
 
     public ICommand SetContentCommand { get; }
-
-    private object? _content = new LoginPage();
 
     public object? Content {
         get => _content;

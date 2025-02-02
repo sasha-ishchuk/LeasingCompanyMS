@@ -4,4 +4,6 @@ public partial class ManagePaymentsPage {
     public ManagePaymentsPage() {
         InitializeComponent();
     }
+    
+    
 }
