@@ -15,25 +15,16 @@ public class UsersRepository : IUsersRepository {
         return Path.Combine(projectPath, "Json", "users.json");
     }
 
-    public bool AuthenticateUser(string username, string password) {
-        List<User> users = GetAll();
-        foreach (var user in users)
-            if (user.Username == username && user.Password == password)
-                return true;
-
-        return false;
-    }
-
     public List<User> GetAll() {
         return Users;
     }
 
     public List<User> Get(UsersFilter usersFilter) {
         return Users.FindAll(user => {
-            return usersFilter.Id != null ? user.Id == usersFilter.Id : true
-                && usersFilter.Username != null ? user.Username == usersFilter.Username : true
-                && usersFilter.Password != null ? user.Password == usersFilter.Password : true
-                && usersFilter.Role != null ? user.Role == usersFilter.Role : true;
+            return (usersFilter.Id == null || user.Id == usersFilter.Id)
+                && (usersFilter.Password == null || user.Password == usersFilter.Password)
+                   && (usersFilter.Username == null || user.Username == usersFilter.Username)
+                && (usersFilter.Role == null || user.Role == usersFilter.Role);
         });
     }
 

@@ -25,9 +25,9 @@ public class LeasingsRepository : ILeasingsRepository {
 
     public List<Leasing> Get(LeasingsFilter leasingsFilter) {
         return Leasings.FindAll(leasing => {
-            return leasingsFilter.Id != null ? leasingsFilter.Id.Equals(leasing.Id) : true
-                && leasingsFilter.UserId != null ? leasingsFilter.UserId.Equals(leasing.UserId) : true
-                && leasingsFilter.IsActive != null ? leasing.IsActive() == leasingsFilter.IsActive : true;
+            return (leasingsFilter.Id == null || leasingsFilter.Id.Equals(leasing.Id))
+                   && (leasingsFilter.UserId == null || leasingsFilter.UserId.Equals(leasing.UserId))
+                && (leasingsFilter.IsActive == null || leasing.IsActive() == leasingsFilter.IsActive);
         });
     }
 
