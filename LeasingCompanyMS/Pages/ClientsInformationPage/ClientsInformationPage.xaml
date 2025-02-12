@@ -10,10 +10,48 @@
       ShowsNavigationUI="False"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch">
-
 	<Page.DataContext>
 		<pages:ClientsInformationPageViewModel />
 	</Page.DataContext>
 
-	<DataGrid ItemsSource="{Binding Leasings}" />
+	<StackPanel>
+		<DataGrid IsReadOnly="True"
+		          AutoGenerateColumns="False"
+		          ItemsSource="{Binding Users, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+		          SelectedItem="{Binding SelectedUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+		          SelectionMode="Single"
+		          SelectionUnit="FullRow"
+		          VerticalScrollBarVisibility="Auto"
+		          VerticalAlignment="Stretch"
+		          VerticalContentAlignment="Stretch">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="First name" Binding="{Binding FirstName}" Width="*"/>
+				<DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*"/>
+				<DataGridTextColumn Header="Company name" Binding="{Binding CompanyName}" Width="*"/>
+				<DataGridTextColumn Header="TaxId" Binding="{Binding TaxId}" Width="*"/>
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+				<DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}" Width="*"/>
+				<DataGridTextColumn Header="Address line 1" Binding="{Binding AddressLine1}" Width="*"/>
+				<DataGridTextColumn Header="Address line 2" Binding="{Binding AddressLine2}" Width="*"/>
+				<DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+				<DataGridTextColumn Header="State" Binding="{Binding State}" Width="*"/>
+				<DataGridTextColumn Header="Zip code" Binding="{Binding ZipCode}" Width="*"/>
+				<DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+				<DataGridTextColumn Header="Role" Binding="{Binding Role}" Width="*"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		
+		<!-- Buttons -->
+		<Border Padding="0 8 0 8">
+			<Grid>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button Content="Create new client"
+					        Command="{Binding OpenCreateNewClientWindowCommand}"
+					        Style="{StaticResource controlButton}"
+					        Padding="32,8,32,8"
+					        HorizontalAlignment="Left" />
+				</StackPanel>
+			</Grid>
+		</Border>
+	</StackPanel>
 </Page>

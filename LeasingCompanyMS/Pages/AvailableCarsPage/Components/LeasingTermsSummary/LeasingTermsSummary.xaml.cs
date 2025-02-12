@@ -26,6 +26,12 @@ public partial class LeasingTermsSummary {
         new UIPropertyMetadata(null)
     );
 
+    public static readonly DependencyProperty AllPaymentsMadeProperty = DependencyProperty.Register(
+        nameof(AllPaymentsMade),
+        typeof(bool),
+        typeof(LeasingTermsSummary),
+        new UIPropertyMetadata(null)
+    );
 
     public LeasingTermsSummary() {
         InitializeComponent();
@@ -44,5 +50,10 @@ public partial class LeasingTermsSummary {
     public ICommand? RejectLeasingTermsCommand {
         get => (ICommand)GetValue(RejectLeasingTermsCommandProperty);
         set => SetValue(RejectLeasingTermsCommandProperty, value);
+    }
+    
+    public bool? AllPaymentsMade {
+        get => (bool)GetValue(AllPaymentsMadeProperty);
+        set => SetValue(AllPaymentsMadeProperty, value);
     }
 }

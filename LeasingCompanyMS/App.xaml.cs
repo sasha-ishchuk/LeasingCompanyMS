@@ -8,6 +8,7 @@ namespace LeasingCompanyMS;
 using ICarsRepository = IRepository<Car, string, CarsFilter>;
 using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 using IUsersRepository = IRepository<User, string, UsersFilter>;
+using IPaymentsRepository = IRepository<Payment, string, PaymentsFilter>;
 
 public partial class App : Application {
     public static IServiceProvider ServiceProvider { get; private set; } = null!;
@@ -17,6 +18,7 @@ public partial class App : Application {
         serviceCollection.AddSingleton<IUsersRepository>(new UsersRepository());
         serviceCollection.AddSingleton<ICarsRepository>(new CarsRepository());
         serviceCollection.AddSingleton<ILeasingsRepository>(new LeasingsRepository());
+        serviceCollection.AddSingleton<IPaymentsRepository>(new PaymentsRepository());
 
         ServiceProvider = serviceCollection.BuildServiceProvider();
     }

@@ -11,4 +11,5 @@ public class CarsFilter {
     public string? Vin { get; set; }
     public List<string>? Packages { get; set; }
     public int? EstimatedNetValue { get; set; }
+    public CarStatus? Status { get; set; }
 }

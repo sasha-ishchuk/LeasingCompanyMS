@@ -45,4 +45,16 @@ public class UsersRepository : IUsersRepository {
     public User? GetById(string id) {
         return Get(new UsersFilter { Id = id }).FirstOrDefault();
     }
+    
+    public bool UpdateById(string id, User updatedUser) {
+        var user = _users.Find(c => c.Id == id);
+        if (user == null) {
+            return false;
+        }
+        
+        user = updatedUser;
+        UpdateUsersFileContents();
+
+        return true;
+    }
 }

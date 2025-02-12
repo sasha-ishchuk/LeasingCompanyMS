@@ -36,8 +36,13 @@
 							<ColumnDefinition Width="2*" />
 							<ColumnDefinition Width="2*" />
 						</Grid.ColumnDefinitions>
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
 
-						<StackPanel Orientation="Vertical">
+						<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
 							<Label Content="Selected car:"
 							       HorizontalAlignment="Stretch"
 							       VerticalAlignment="Stretch"
@@ -58,13 +63,18 @@
 							       VerticalAlignment="Top"
 							       Foreground="Black" />
 
+							<Label Content="Residual value:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Foreground="Black" />
+							
 							<Label Content="Monthly lease installment:"
 							       HorizontalAlignment="Left"
 							       VerticalAlignment="Top"
 							       Foreground="Black" />
 						</StackPanel>
 
-						<StackPanel Grid.Column="1" Orientation="Vertical">
+						<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
 							<Label
 								Content="{Binding LeasingTerms.Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
 								HorizontalAlignment="Left"
@@ -87,6 +97,12 @@
 								HorizontalAlignment="Left"
 								VerticalAlignment="Stretch"
 								Foreground="Black" />
+							
+							<Label
+								Content="{Binding LeasingTerms.ResidualValue, RelativeSource={RelativeSource AncestorType=UserControl}}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Stretch"
+								Foreground="Black" />
 
 							<Label
 								Content="{Binding LeasingTerms.MonthlyLeaseInstallment, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -94,6 +110,12 @@
 								VerticalAlignment="Stretch"
 								Foreground="Black" />
 						</StackPanel>
+						
+						<Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0 8 0 8">
+							<CheckBox IsChecked="{Binding AllPaymentsMade, RelativeSource={RelativeSource AncestorType=UserControl}}">
+								<TextBlock>(DEMO) All payments made</TextBlock>
+							</CheckBox>	
+						</Border>
 					</Grid>
 				</StackPanel>
 			</Border>
@@ -118,7 +140,6 @@
 						        HorizontalAlignment="Left" />
 					</StackPanel>
 				</Grid>
-
 			</Border>
 
 		</StackPanel>

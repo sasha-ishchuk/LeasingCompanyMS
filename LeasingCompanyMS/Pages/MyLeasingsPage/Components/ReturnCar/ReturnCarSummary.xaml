@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="LeasingCompanyMS.Pages.Components.ReturnCar.ReturnCarSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LeasingCompanyMS.Pages.Components.ReturnCar"
+             xmlns:converters="clr-namespace:LeasingCompanyMS.Converters"
+             mc:Ignorable="d">
+	<UserControl.Resources>
+		<converters:CarToStringConverter x:Key="CarToStringConverter" />
+	</UserControl.Resources>
+
+	<Border Padding="16"
+	        CornerRadius="8"
+	        Background="White"
+	        HorizontalAlignment="Stretch"
+	        VerticalAlignment="Stretch">
+		<StackPanel HorizontalAlignment="Stretch"
+		            VerticalAlignment="Stretch">
+
+			<!-- Title -->
+			<Border Padding="0 8 0 8">
+				<TextBlock HorizontalAlignment="Center"
+				           VerticalAlignment="Top"
+				           FontWeight="SemiBold"
+				           FontSize="18">
+					Do you wish to return this car?
+				</TextBlock>
+			</Border>
+
+			<!-- Contents -->
+			<Border Padding="0 8 0 8">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="2*" />
+						<ColumnDefinition Width="2*" />
+					</Grid.ColumnDefinitions>
+					
+					<Label Grid.Row="0" Grid.Column="0"
+					       Content="Selected car:"
+					       HorizontalAlignment="Stretch"
+					       VerticalAlignment="Stretch"
+					       Foreground="Black" />
+
+					<Label Grid.Row="0" Grid.Column="1"
+					       Content="{Binding Car, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource CarToStringConverter}}"
+					       HorizontalAlignment="Stretch"
+					       VerticalAlignment="Stretch"
+					       Foreground="Black" />
+				</Grid>
+			</Border>
+
+			<!-- Buttons -->
+			<Border Padding="0 8 0 8">
+				<Grid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Button Content="Confirm"
+						        Command="{Binding ConfirmCarReturnCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
+
+						<Border Width="16" />
+
+						<Button Content="Cancel"
+						        Command="{Binding DeclineCarReturnCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+						        Style="{StaticResource controlButton}"
+						        Background="Firebrick"
+						        Padding="32,8,32,8"
+						        HorizontalAlignment="Left" />
+					</StackPanel>
+				</Grid>
+			</Border>
+		</StackPanel>
+	</Border>
+</UserControl>

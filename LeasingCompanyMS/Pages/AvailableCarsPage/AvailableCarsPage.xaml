@@ -14,6 +14,10 @@
 	<Page.DataContext>
 		<browseCarsPage:AvailableCarsPageViewModel />
 	</Page.DataContext>
+	
+	<Page.Resources>
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+	</Page.Resources>
 
 	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 		<!-- Available car information -->
@@ -50,7 +54,7 @@
 					<DataGridTextColumn Header="Displacement" Width="*" Binding="{Binding Engine.Displacement}" />
 					<DataGridTextColumn Header="Horsepower" Width="*" Binding="{Binding Engine.Power}" />
 					<DataGridTextColumn Header="VIN number" Width="*" Binding="{Binding Vin}" />
-					<DataGridTextColumn Header="Netto value" Width="*" Binding="{Binding EstimatedNetValue}" />
+					<DataGridTextColumn Header="Net value" Width="*" Binding="{Binding EstimatedNetValue}" />
 				</DataGrid.Columns>
 			</DataGrid>
 
@@ -91,7 +95,7 @@
 							          SelectedValuePath="Key"
 							          DisplayMemberPath="Value" />
 						</StackPanel>
-
+						
 						<Border Height="8" />
 
 						<StackPanel HorizontalAlignment="Stretch">
@@ -106,6 +110,20 @@
 							          DisplayMemberPath="Key" />
 						</StackPanel>
 
+						<Border Height="8" />
+
+						<StackPanel HorizontalAlignment="Stretch">
+							<Label Content="Residual value:"
+							       HorizontalAlignment="Left"
+							       VerticalAlignment="Top"
+							       Margin="0,0,0,0"
+							       Foreground="White" />
+							<ComboBox ItemsSource="{Binding ResidualValueOptions, Mode=OneTime}"
+							          SelectedValue="{Binding SelectedResidualValueOption, Mode=TwoWay}"
+							          SelectedValuePath="Value"
+							          DisplayMemberPath="Key" />
+						</StackPanel>
+						
 						<Border Height="8" />
 
 						<StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
@@ -127,7 +145,7 @@
 							       Margin="0,0,0,0"
 							       Foreground="White" />
 						</StackPanel>
-
+						
 						<Border Height="16" />
 
 						<Button Command="{Binding OpenLeaseCarDialogCommand}"
@@ -142,12 +160,15 @@
 		</Grid>
 
 		<!-- Leasing overlay -->
-		<Grid Visibility="{Binding IsLeaseCarDialogOpen}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Grid Visibility="{Binding IsLeaseCarDialogOpen, Converter={StaticResource BooleanToVisibilityConverter}}"
+		      HorizontalAlignment="Stretch"
+		      VerticalAlignment="Stretch">
 			<Grid Background="Black" Opacity="0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 			<leasingTermsSummary:LeasingTermsSummary
 				LeasingTerms="{Binding  LeasingTerms}"
 				AcceptLeasingTermsCommand="{Binding AcceptLeasingConditionCommand}"
 				RejectLeasingTermsCommand="{Binding CloseLeaseCarDialogCommand}"
+				AllPaymentsMade="{Binding AllPaymentsMade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center" />
 		</Grid>

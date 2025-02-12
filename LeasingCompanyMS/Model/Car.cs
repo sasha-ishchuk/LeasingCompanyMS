@@ -18,4 +18,6 @@ public record Car {
 
     [JsonPropertyName("estimated_net_value")]
     public int EstimatedNetValue { get; set; }
+
+    [JsonPropertyName("status")] public CarStatus Status { get; set; }
 }

@@ -12,5 +12,40 @@
 		<manageCarsPage:ManageCarsPageViewModel />
 	</Page.DataContext>
 
-	<DataGrid ItemsSource="{Binding Cars}" />
+	<StackPanel>
+		<DataGrid IsReadOnly="True"
+		          AutoGenerateColumns="False"
+		          ItemsSource="{Binding Cars, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+		          SelectedItem="{Binding SelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+		          SelectionMode="Single"
+		          SelectionUnit="FullRow"
+		          VerticalScrollBarVisibility="Auto"
+		          VerticalAlignment="Stretch"
+		          VerticalContentAlignment="Stretch">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Brand" Width="*" Binding="{Binding Brand}" />
+				<DataGridTextColumn Header="Model" Width="*" Binding="{Binding Model}" />
+				<DataGridTextColumn Header="Production year" Width="*" Binding="{Binding ProductionYear}" />
+				<DataGridTextColumn Header="Body color" Width="*" Binding="{Binding BodyColor}" />
+				<DataGridTextColumn Header="Fuel type" Width="*" Binding="{Binding Engine.Type}" />
+				<DataGridTextColumn Header="Displacement" Width="*" Binding="{Binding Engine.Displacement}" />
+				<DataGridTextColumn Header="Horsepower" Width="*" Binding="{Binding Engine.Power}" />
+				<DataGridTextColumn Header="VIN number" Width="*" Binding="{Binding Vin}" />
+				<DataGridTextColumn Header="Net value" Width="*" Binding="{Binding EstimatedNetValue}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	
+		<!-- Buttons -->
+		<Border Padding="0 8 0 8">
+			<Grid>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button Content="Add new car"
+					        Command="{Binding OpenAddNewCarWindowCommand}"
+					        Style="{StaticResource controlButton}"
+					        Padding="32,8,32,8"
+					        HorizontalAlignment="Left" />
+				</StackPanel>
+			</Grid>
+		</Border>
+	</StackPanel>
 </Page>
