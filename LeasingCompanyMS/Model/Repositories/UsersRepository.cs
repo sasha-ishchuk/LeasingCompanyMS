@@ -22,11 +22,12 @@ public class UsersRepository : IUsersRepository {
         File.WriteAllText(_usersFilePath, stringifiedJsonUsers);
     }
 
-    public void Add(User user) {
+    public String Add(User user) {
         user.Id = NewGuid().ToString();
         _users.Add(user);
 
         UpdateUsersFileContents();
+        return user.Id;
     }
 
     public List<User> GetAll() {
@@ -52,9 +53,27 @@ public class UsersRepository : IUsersRepository {
             return false;
         }
         
-        user = updatedUser;
+        UpdateUser(user, updatedUser);
         UpdateUsersFileContents();
 
         return true;
+    }
+    
+    private void UpdateUser(User user, User updatedUser) {
+        user.Email = updatedUser.Email;
+        user.FirstName = updatedUser.FirstName;
+        user.LastName = updatedUser.LastName;
+        user.PhoneNumber = updatedUser.PhoneNumber;
+        user.AddressLine1 = updatedUser.AddressLine1;
+        user.AddressLine2 = updatedUser.AddressLine2;
+        user.City = updatedUser.City;
+        user.State = updatedUser.State;
+        user.ZipCode = updatedUser.ZipCode;
+        user.Country = updatedUser.Country;
+        user.CompanyName = updatedUser.CompanyName;
+        user.TaxId = updatedUser.TaxId;
+        user.Username = updatedUser.Username;
+        user.Password = updatedUser.Password;
+        user.Role = updatedUser.Role;
     }
 }

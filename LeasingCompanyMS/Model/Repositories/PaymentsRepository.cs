@@ -22,10 +22,11 @@ public class PaymentsRepository : IPaymentsRepository {
         File.WriteAllText(_paymentsFilePath, stringifiedJsonPayments);
     }
 
-    public void Add(Payment payment) {
+    public String Add(Payment payment) {
         payment.Id = NewGuid().ToString();
         _payments.Add(payment);
         UpdatePaymentsFileContents();
+        return payment.Id;
     }
 
     public Payment? GetById(string id) {
@@ -54,9 +55,20 @@ public class PaymentsRepository : IPaymentsRepository {
             return false;
         }
         
-        payment = updatedPayment;
+        UpdatePayment(payment, updatedPayment);
         UpdatePaymentsFileContents();
 
         return true;
+    }
+    
+    private void UpdatePayment(Payment payment, Payment updatedPayment) {
+        payment.OrdinalNumber = updatedPayment.OrdinalNumber;
+        payment.UserId = updatedPayment.UserId;
+        payment.CarId = updatedPayment.CarId;
+        payment.LeasingId = updatedPayment.LeasingId;
+        payment.NetAmount = updatedPayment.NetAmount;
+        payment.GrossAmount = updatedPayment.GrossAmount;
+        payment.IssueDate = updatedPayment.IssueDate;
+        payment.DueDate = updatedPayment.DueDate;
     }
 }

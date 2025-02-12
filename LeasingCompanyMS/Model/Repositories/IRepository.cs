@@ -1,7 +1,7 @@
 ﻿namespace LeasingCompanyMS.Model.Repositories;
 
 public interface IRepository<Type, in IdType, in FilterType> {
-    void Add(Type t);
+    String Add(Type t);
     
     Type? GetById(IdType id);
     List<Type> GetAll();

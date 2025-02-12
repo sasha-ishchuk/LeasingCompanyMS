@@ -1,0 +1,48 @@
+﻿[
+  {
+    "id": "d5a6d106-5bda-4e57-9df7-5ac35e12d8de",
+    "brand": "Audi",
+    "model": "A4",
+    "production_year": 2020,
+    "registration_number": "KWA5516",
+    "body_color": "black",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.0",
+      "power": "190"
+    },
+    "vin": "WAUZZZ8V7BA123456",
+    "packages": [
+      "sport package",
+      "comfort package",
+      "lane assist package",
+      "parking package",
+      "multimedia package"
+    ],
+    "estimated_net_value": 154000,
+    "status": 2
+  },
+  {
+    "id": "3b57b876-d4fa-44d3-b5e5-bc399b7f26a6",
+    "brand": "BMW",
+    "model": "X5",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "silver",
+    "engine": {
+      "type": "diesel",
+      "displacement": "3.0",
+      "power": "265"
+    },
+    "vin": "5UXKR2C59L9S12345",
+    "packages": [
+      "M package",
+      "premium package",
+      "panoramic roof package",
+      "safety package",
+      "comfort package"
+    ],
+    "estimated_net_value": 242000,
+    "status": 2
+  }
+]

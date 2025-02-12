@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.IO.Packaging;
 using LeasingCompanyMS.Utils;
 using static System.Guid;
 
@@ -23,17 +24,18 @@ public class CarsRepository : ICarsRepository {
     }
 
     public Car? GetById(string id) {
-        return Get(new CarsFilter { Id = id }).First();
+        return Get(new CarsFilter { Id = id }).FirstOrDefault();
     }
 
     public List<Car> GetAll() {
         return _cars;
     }
 
-    public void Add(Car car) {
+    public String Add(Car car) {
         car.Id = NewGuid().ToString();
         _cars.Add(car);
         UpdateCarsFileContents();
+        return car.Id;
     }
 
     // INFO(piotr.klosowski): This function is BIG OOF. Kill it with fire.
@@ -51,7 +53,7 @@ public class CarsRepository : ICarsRepository {
                        (carsFilter.Engine!.Value.Power == null || car.Engine.Power == carsFilter.Engine!.Value.Power)
                    )) &&
                    (carsFilter.Vin == null || car.Vin == carsFilter.Vin) &&
-                   (carsFilter.Packages == null || car.Packages == carsFilter.Packages) &&
+                   (carsFilter.Packages == null || carsFilter.Packages.All(p => car.Packages.Contains(p))) &&
                    (carsFilter.EstimatedNetValue == null || car.EstimatedNetValue == carsFilter.EstimatedNetValue) &&
                    (carsFilter.Status == null || car.Status == carsFilter.Status);
         }).ToList();
@@ -61,9 +63,22 @@ public class CarsRepository : ICarsRepository {
         var car = _cars.Find(c => c.Id == id);
         if (car == null) return false;
 
-        car = updatedCar;
+        UpdateCar(car, updatedCar);
         UpdateCarsFileContents();
 
         return true;
+    }
+    
+    private void UpdateCar(Car car, Car updatedCar) {
+        car.Brand = updatedCar.Brand;
+        car.Model = updatedCar.Model;
+        car.ProductionYear = updatedCar.ProductionYear;
+        car.RegistrationNumber = updatedCar.RegistrationNumber;
+        car.BodyColor = updatedCar.BodyColor;
+        car.Engine = updatedCar.Engine;
+        car.Vin = updatedCar.Vin;
+        car.Packages = updatedCar.Packages;
+        car.EstimatedNetValue = updatedCar.EstimatedNetValue;
+        car.Status = updatedCar.Status;
     }
 }

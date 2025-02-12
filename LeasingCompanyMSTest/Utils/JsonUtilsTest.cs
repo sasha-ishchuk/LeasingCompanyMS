@@ -44,10 +44,10 @@ public class JsonUtilsTest {
         var result = JsonUtils.MapJsonStringToUserList(jsonString);
         // then
         Assert.IsNotNull(result);
-        Assert.AreEqual(1, result.Count);
-        Assert.AreEqual("test", result[0].Username);
-        Assert.AreEqual("test", result[0].Password);
-        Assert.AreEqual("test", result[0].Role);
+        Assert.AreEqual(3, result.Count);
+        Assert.AreEqual("admin", result[0].Username);
+        Assert.AreEqual("admin", result[0].Password);
+        Assert.AreEqual("admin", result[0].Role);
     }
 
     [TestMethod]

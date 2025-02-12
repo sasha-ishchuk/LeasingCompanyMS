@@ -22,10 +22,11 @@ public class LeasingsRepository : ILeasingsRepository {
         File.WriteAllText(_leasingsFilePath, stringifiedJsonLeasings);
     }
 
-    public void Add(Leasing leasing) {
+    public String Add(Leasing leasing) {
         leasing.Id = NewGuid().ToString();
         _leasings.Add(leasing);
         UpdateLeasingsFileContents();
+        return leasing.Id;
     }
 
     public Leasing? GetById(string id) {
@@ -50,9 +51,22 @@ public class LeasingsRepository : ILeasingsRepository {
             return false;
         }
         
-        leasing = updatedLeasing;
+        UpdateLeasing(leasing, updatedLeasing);
         UpdateLeasingsFileContents();
 
         return true;
+    }
+    
+    private void UpdateLeasing(Leasing leasing, Leasing updatedLeasing) {
+        leasing.UserId = updatedLeasing.UserId;
+        leasing.CarId = updatedLeasing.CarId;
+        leasing.LeasingDurationInMonths = updatedLeasing.LeasingDurationInMonths;
+        leasing.DownPayment = updatedLeasing.DownPayment;
+        leasing.ResidualValue = updatedLeasing.ResidualValue;
+        leasing.YearlyMileageLimit = updatedLeasing.YearlyMileageLimit;
+        leasing.MonthlyLeaseInstallment = updatedLeasing.MonthlyLeaseInstallment;
+        leasing.From = updatedLeasing.From;
+        leasing.To = updatedLeasing.To;
+        leasing.Conditions = updatedLeasing.Conditions;
     }
 }
