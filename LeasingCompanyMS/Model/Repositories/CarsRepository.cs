@@ -10,7 +10,7 @@ public class CarsRepository : ICarsRepository {
     private readonly List<Car> _cars;
     private readonly string _carsFilePath;
 
-    public CarsRepository(string carsFilePath = "cars.json") {
+    public CarsRepository(string carsFilePath = "Json/cars.json") {
         _carsFilePath = carsFilePath;
 
         var carsJson = File.ReadAllText(_carsFilePath);

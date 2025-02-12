@@ -10,7 +10,7 @@ public class UsersRepository : IUsersRepository {
     private readonly List<User> _users;
     private readonly string _usersFilePath;
 
-    public UsersRepository(string usersFilePath = "users.json") {
+    public UsersRepository(string usersFilePath = "Json/users.json") {
         _usersFilePath = usersFilePath;
 
         var usersJson = File.ReadAllText(_usersFilePath);

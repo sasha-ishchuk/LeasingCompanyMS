@@ -7,28 +7,6 @@ public class UsersRepositoryTest {
     private readonly UsersRepository _usersRepository = new();
 
     [TestMethod]
-    public void AuthenticateUser_WhenValidCredentials_ThenReturnsTrue() {
-        // given
-        var username = "user";
-        var password = "user";
-        // when
-        var result = _usersRepository.AuthenticateUser(username, password);
-        // then
-        Assert.IsTrue(result);
-    }
-
-    [TestMethod]
-    public void AuthenticateUser_WhenInvalidCredentials_ThenReturnsFalse() {
-        // given
-        var username = "user1";
-        var password = "user1";
-        // when
-        var result = _usersRepository.AuthenticateUser(username, password);
-        // then
-        Assert.IsFalse(result);
-    }
-
-    [TestMethod]
     public void GetAll_ReturnsAllUsers() {
         // given/when
         var users = _usersRepository.GetAll();

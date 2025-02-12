@@ -10,7 +10,7 @@ public class LeasingsRepository : ILeasingsRepository {
     private readonly List<Leasing> _leasings;
     private readonly string _leasingsFilePath;
 
-    public LeasingsRepository(string leasingsFilePath = "leasings.json") {
+    public LeasingsRepository(string leasingsFilePath = "Json/leasings.json") {
         _leasingsFilePath = leasingsFilePath;
 
         var leasingsJson = File.ReadAllText(_leasingsFilePath);

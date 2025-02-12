@@ -10,7 +10,7 @@ public class PaymentsRepository : IPaymentsRepository {
     private readonly List<Payment> _payments;
     private readonly string _paymentsFilePath;
 
-    public PaymentsRepository(string paymentsFilePath = "payments.json") {
+    public PaymentsRepository(string paymentsFilePath = "Json/payments.json") {
         _paymentsFilePath = paymentsFilePath;
 
         var paymentsJson = File.ReadAllText(_paymentsFilePath);
