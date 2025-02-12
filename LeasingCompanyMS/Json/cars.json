@@ -1,92 +1,433 @@
 [
   {
-    "Id": "0",
-    "Registration": "KWA5516",
-    "Mark": "Mazda",
-    "Model": "CX-5",
-    "Year": 2016,
-    "VIN": "BF9MR42V8EBR67858",
-    "MonthlyLease": 500
+    "id": "d5a6d106-5bda-4e57-9df7-5ac35e12d8de",
+    "brand": "Audi",
+    "model": "A4",
+    "production_year": 2020,
+    "registration_number": null,
+    "body_color": "black",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.0",
+      "power": "190"
+    },
+    "vin": "WAUZZZ8V7BA123456",
+    "packages": [
+      "sport package",
+      "comfort package",
+      "lane assist package",
+      "parking package",
+      "multimedia package"
+    ],
+    "estimated_net_value": 154000,
+    "status": 2
   },
   {
-    "Id": "1",
-    "Registration": "DWR7351",
-    "Mark": "Audi",
-    "Model": "Q8",
-    "Year": 2019,
-    "VIN": "LPA0LMHJ02JFW6040",
-    "MonthlyLease": 500
+    "id": "3b57b876-d4fa-44d3-b5e5-bc399b7f26a6",
+    "brand": "BMW",
+    "model": "X5",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "silver",
+    "engine": {
+      "type": "diesel",
+      "displacement": "3.0",
+      "power": "265"
+    },
+    "vin": "5UXKR2C59L9S12345",
+    "packages": [
+      "M package",
+      "premium package",
+      "panoramic roof package",
+      "safety package",
+      "comfort package"
+    ],
+    "estimated_net_value": 242000,
+    "status": 2
   },
   {
-    "Id": "2",
-    "Registration": "WA04474",
-    "Mark": "BMW",
-    "Model": "M5",
-    "Year": 2020,
-    "VIN": "PM1M6AL60YHKB3977",
-    "MonthlyLease": 500
+    "id": "b8f9c88a-d8d7-456f-9129-c0e1101b7c1a",
+    "brand": "Mercedes-Benz",
+    "model": "C-Class",
+    "production_year": 2022,
+    "registration_number": null,
+    "body_color": "white",
+    "engine": {
+      "type": "petrol",
+      "displacement": "1.5",
+      "power": "156"
+    },
+    "vin": "WDDW5GBH9LF123456",
+    "packages": [
+      "AMG package",
+      "multimedia package",
+      "comfort package",
+      "driver assistance package",
+      "parking package"
+    ],
+    "estimated_net_value": 167200,
+    "status": 0
   },
   {
-    "Id": "3",
-    "Registration": "KMI3975",
-    "Mark": "Maserati",
-    "Model": "Ghibli",
-    "Year": 2019,
-    "VIN": "LE4KJUUF66YDM9280",
-    "MonthlyLease": 500
+    "id": "8a0d1a21-35a3-4380-94b9-84ec7c827b46",
+    "brand": "Volkswagen",
+    "model": "Golf",
+    "production_year": 2020,
+    "registration_number": null,
+    "body_color": "blue",
+    "engine": {
+      "type": "petrol",
+      "displacement": "1.4",
+      "power": "150"
+    },
+    "vin": "WVWRF7JTXLE123456",
+    "packages": [
+      "R-line package",
+      "driver assistance package",
+      "sport package",
+      "safety package",
+      "multimedia package"
+    ],
+    "estimated_net_value": 110000,
+    "status": 2
   },
   {
-    "Id": "4",
-    "Registration": "KR984AU",
-    "Mark": "Volvo",
-    "Model": "XC90",
-    "Year": 2023,
-    "VIN": "6MMWZCBJ1U0S99940",
-    "MonthlyLease": 500
+    "id": "6b7cf9de-c342-4388-bf2e-97dbf322f999",
+    "brand": "Tesla",
+    "model": "Model S",
+    "production_year": 2023,
+    "registration_number": null,
+    "body_color": "black",
+    "engine": {
+      "type": "electric",
+      "displacement": "N/A",
+      "power": "1020"
+    },
+    "vin": "5YJSA1E43FF123456",
+    "packages": [
+      "autonomous package",
+      "premium package",
+      "safety package",
+      "comfort package",
+      "multimedia package"
+    ],
+    "estimated_net_value": 330000,
+    "status": 0
   },
   {
-    "Id": "5",
-    "Registration": "WA12345",
-    "Mark": "Toyota",
-    "Model": "Corolla",
-    "Year": 2015,
-    "VIN": "JT2BU4EE9FJ100100",
-    "MonthlyLease": 500
+    "id": "253af3b8-303e-42e9-9982-17baf5c20272",
+    "brand": "Ford",
+    "model": "Mustang",
+    "production_year": 2019,
+    "registration_number": null,
+    "body_color": "red",
+    "engine": {
+      "type": "petrol",
+      "displacement": "5.0",
+      "power": "450"
+    },
+    "vin": "1FA6P8CF9K5134567",
+    "packages": [
+      "Performance package",
+      "Premium package",
+      "sport package",
+      "audio package",
+      "driver assistance package"
+    ],
+    "estimated_net_value": 198000,
+    "status": 2
   },
   {
-    "Id": "6",
-    "Registration": "KR98765",
-    "Mark": "Volkswagen",
-    "Model": "Golf",
-    "Year": 2018,
-    "VIN": "WVWZZZ1JZDW010101",
-    "MonthlyLease": 500
+    "id": "e5f3aaff-20c5-43d9-bf3a-97572b56c3ea",
+    "brand": "Honda",
+    "model": "Civic",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "gray",
+    "engine": {
+      "type": "petrol",
+      "displacement": "1.8",
+      "power": "140"
+    },
+    "vin": "19XFC2F54FE123456",
+    "packages": [
+      "sport package",
+      "comfort package",
+      "multimedia package",
+      "parking package",
+      "safety package"
+    ],
+    "estimated_net_value": 101200,
+    "status": 2
   },
   {
-    "Id": "7",
-    "Registration": "PO45678",
-    "Mark": "Ford",
-    "Model": "Focus",
-    "Year": 2020,
-    "VIN": "WF0SXXGCBXJ010202",
-    "MonthlyLease": 500
+    "id": "76ec2f1c-8b8e-44ef-81a1-b9b3374b92c5",
+    "brand": "Toyota",
+    "model": "Corolla",
+    "production_year": 2022,
+    "registration_number": null,
+    "body_color": "gold",
+    "engine": {
+      "type": "hybrid",
+      "displacement": "1.8",
+      "power": "122"
+    },
+    "vin": "JTDBBRFU4J3123456",
+    "packages": [
+      "premium package",
+      "multimedia package",
+      "safety package",
+      "comfort package",
+      "driver assistance package"
+    ],
+    "estimated_net_value": 118800,
+    "status": 0
   },
   {
-    "Id": "8",
-    "Registration": "GD23456",
-    "Mark": "BMW",
-    "Model": "X5",
-    "Year": 2017,
-    "VIN": "5UXKR2C58H0Y00000",
-    "MonthlyLease": 500
+    "id": "1c2f2f8d-ffb5-48f6-8697-59c01565a991",
+    "brand": "Porsche",
+    "model": "911",
+    "production_year": 2020,
+    "registration_number": null,
+    "body_color": "blue",
+    "engine": {
+      "type": "petrol",
+      "displacement": "3.0",
+      "power": "370"
+    },
+    "vin": "WP0AB2A94LS123456",
+    "packages": [
+      "Carrera package",
+      "sport package",
+      "comfort package",
+      "Bose audio package",
+      "driver assistance package"
+    ],
+    "estimated_net_value": 374000,
+    "status": 2
   },
   {
-    "Id": "9",
-    "Registration": "WA54321",
-    "Mark": "Mercedes-Benz",
-    "Model": "E-Class",
-    "Year": 2019,
-    "VIN": "WDD2130221F100500",
-    "MonthlyLease": 500
+    "id": "e3fe5c51-e0fe-4752-bfd0-15e7cde62532",
+    "brand": "Nissan",
+    "model": "Qashqai",
+    "production_year": 2023,
+    "registration_number": null,
+    "body_color": "green",
+    "engine": {
+      "type": "petrol",
+      "displacement": "1.3",
+      "power": "160"
+    },
+    "vin": "SJNFBAAN7T8S12345",
+    "packages": [
+      "premium package",
+      "comfort package",
+      "parking package",
+      "multimedia package",
+      "safety package"
+    ],
+    "estimated_net_value": 118800,
+    "status": 0
+  },
+  {
+    "id": "f5c87f7d-d0d7-47a3-b364-30f70d163636",
+    "brand": "Kia",
+    "model": "Sportage",
+    "production_year": 2022,
+    "registration_number": null,
+    "body_color": "black",
+    "engine": {
+      "type": "diesel",
+      "displacement": "2.0",
+      "power": "185"
+    },
+    "vin": "KNDPC3AC6M7456789",
+    "packages": [
+      "sport package",
+      "safety package",
+      "comfort package",
+      "multimedia package",
+      "lane assist package"
+    ],
+    "estimated_net_value": 149600,
+    "status": 0
+  },
+  {
+    "id": "78e15f3c-4897-42ff-bcc3-b6ff53912b50",
+    "brand": "Mazda",
+    "model": "CX-5",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "white",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.5",
+      "power": "194"
+    },
+    "vin": "JM3KFBDM5M1234567",
+    "packages": [
+      "premium package",
+      "sport package",
+      "multimedia package",
+      "safety package",
+      "panoramic roof package"
+    ],
+    "estimated_net_value": 167200,
+    "status": 0
+  },
+  {
+    "id": "1c04d76b-f998-41f0-8a3b-2adf9c5f5cbb",
+    "brand": "Subaru",
+    "model": "Outback",
+    "production_year": 2020,
+    "registration_number": null,
+    "body_color": "gray",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.5",
+      "power": "175"
+    },
+    "vin": "4S4BSABC9L3267890",
+    "packages": [
+      "premium package",
+      "comfort package",
+      "sport package",
+      "safety package",
+      "multimedia package"
+    ],
+    "estimated_net_value": 145200,
+    "status": 2
+  },
+  {
+    "id": "af7a1d58-b8f1-4a83-a116-bd2220b7d8f5",
+    "brand": "Volvo",
+    "model": "XC90",
+    "production_year": 2023,
+    "registration_number": null,
+    "body_color": "gold",
+    "engine": {
+      "type": "hybrid",
+      "displacement": "2.0",
+      "power": "400"
+    },
+    "vin": "YV4A22RK2P1245678",
+    "packages": [
+      "R-Design package",
+      "luxury package",
+      "multimedia package",
+      "safety package",
+      "comfort package"
+    ],
+    "estimated_net_value": 308000,
+    "status": 3
+  },
+  {
+    "id": "b54c02b4-bf1d-4d5f-9b04-b0c4c7a145d1",
+    "brand": "Hyundai",
+    "model": "Elantra",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "red",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.0",
+      "power": "147"
+    },
+    "vin": "5NPD84LF7MH123456",
+    "packages": [
+      "technology package",
+      "comfort package",
+      "multimedia package",
+      "sport package",
+      "safety package"
+    ],
+    "estimated_net_value": 96800,
+    "status": 0
+  },
+  {
+    "id": "35ba5d69-7f1d-4d68-a084-dff26b12233e",
+    "brand": "Chevrolet",
+    "model": "Malibu",
+    "production_year": 2020,
+    "registration_number": null,
+    "body_color": "silver",
+    "engine": {
+      "type": "petrol",
+      "displacement": "1.5",
+      "power": "160"
+    },
+    "vin": "1G1ZD5ST2LF123456",
+    "packages": [
+      "premium package",
+      "multimedia package",
+      "comfort package",
+      "driver assistance package",
+      "safety package"
+    ],
+    "estimated_net_value": 110000,
+    "status": 2
+  },
+  {
+    "id": "9fc8c4d0-0b4f-4193-9958-d69a00067c0e",
+    "brand": "Land Rover",
+    "model": "Range Rover",
+    "production_year": 2023,
+    "registration_number": null,
+    "body_color": "black",
+    "engine": {
+      "type": "diesel",
+      "displacement": "3.0",
+      "power": "300"
+    },
+    "vin": "SALGS2FV2PA123456",
+    "packages": [
+      "luxury package",
+      "safety package",
+      "multimedia package",
+      "off-road package",
+      "comfort package"
+    ],
+    "estimated_net_value": 418000,
+    "status": 3
+  },
+  {
+    "id": "8c87fc26-cf53-47ca-831b-e37f5cdbba53",
+    "brand": "Jaguar",
+    "model": "F-Pace",
+    "production_year": 2021,
+    "registration_number": null,
+    "body_color": "blue",
+    "engine": {
+      "type": "petrol",
+      "displacement": "2.0",
+      "power": "250"
+    },
+    "vin": "SADCJ2FL2GA123456",
+    "packages": [
+      "sport package",
+      "premium package",
+      "multimedia package",
+      "comfort package",
+      "driver assistance package"
+    ],
+    "estimated_net_value": 242000,
+    "status": 2
+  },
+  {
+    "id": "eae8f32a-755c-488a-b6a3-608f95344d15",
+    "brand": "Audi",
+    "model": "Q8 e-tron",
+    "production_year": 2022,
+    "registration_number": "",
+    "body_color": "Silver",
+    "engine": {
+      "type": "Electric",
+      "displacement": "0",
+      "power": "508"
+    },
+    "vin": "1234",
+    "packages": [],
+    "estimated_net_value": 500000,
+    "status": 0
   }
 ]
