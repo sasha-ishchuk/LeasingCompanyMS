@@ -5,14 +5,13 @@ using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
 using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualBasic.CompilerServices;
 
-namespace LeasingCompanyMS.Pages.Components.AddNewCar;
+namespace LeasingCompanyMS.Pages.ManageCarsPage.Components.AddNewCar;
 
 using ICarsRepository = IRepository<Car, string, CarsFilter>;
 
 public class AddNewCarViewModel : INotifyPropertyChanged {
-    private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
+    private readonly ICarsRepository _carsRepository = App.Instance.ServiceProvider.GetService<ICarsRepository>()!;
     private readonly Action _closeWindowDelegate;
     public static string[] FuelTypeOptions { get; } = [
         "Petrol",
@@ -22,6 +21,13 @@ public class AddNewCarViewModel : INotifyPropertyChanged {
     ];
 
     public AddNewCarViewModel(Action closeWindowDelegate) {
+        AddNewCarCommand = new RelayCommand(ExecuteAddNewCarCommand, CanExecuteAddNewCarCommand);
+        _closeWindowDelegate = closeWindowDelegate;
+    }
+    
+    // this constructor is used for testing purposes
+    public AddNewCarViewModel(Action closeWindowDelegate, ICarsRepository carsRepository) {
+        _carsRepository = carsRepository;
         AddNewCarCommand = new RelayCommand(ExecuteAddNewCarCommand, CanExecuteAddNewCarCommand);
         _closeWindowDelegate = closeWindowDelegate;
     }

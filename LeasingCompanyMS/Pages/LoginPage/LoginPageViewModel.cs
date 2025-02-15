@@ -14,7 +14,7 @@ namespace LeasingCompanyMS.Pages.LoginPage;
 using IUsersRepository = IRepository<User, string, UsersFilter>;
 
 public sealed class LoginPageViewModel : INotifyPropertyChanged {
-    private readonly IUsersRepository _userRepository = App.ServiceProvider.GetService<IUsersRepository>()!;
+    private readonly IUsersRepository _userRepository = App.Instance.ServiceProvider.GetService<IUsersRepository>()!;
 
     private string _username = string.Empty;
     private string _password = string.Empty;
@@ -23,6 +23,12 @@ public sealed class LoginPageViewModel : INotifyPropertyChanged {
     public ICommand LoginCommand { get; }
 
     public LoginPageViewModel() {
+        LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+    }
+    
+    // This constructor is used for testing purposes
+    public LoginPageViewModel(IUsersRepository userRepository) {
+        _userRepository = userRepository;
         LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
     }
 

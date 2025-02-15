@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:pages="clr-namespace:LeasingCompanyMS.Pages"
+      xmlns:clientsInformationPage="clr-namespace:LeasingCompanyMS.Pages.ClientsInformationPage"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LeasingInformationPage"
@@ -11,7 +12,7 @@
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch">
 	<Page.DataContext>
-		<pages:ClientsInformationPageViewModel />
+		<clientsInformationPage:ClientsInformationPageViewModel />
 	</Page.DataContext>
 
 	<StackPanel>

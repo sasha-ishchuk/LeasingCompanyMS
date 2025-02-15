@@ -7,6 +7,7 @@ using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
 using LeasingCompanyMS.Pages.Components.AddNewCar;
 using LeasingCompanyMS.Pages.Components.NewClient;
+using LeasingCompanyMS.Pages.ManageCarsPage.Components.AddNewCar;
 using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,9 +16,16 @@ namespace LeasingCompanyMS.Pages.ManageCarsPage;
 using ICarsRepository = IRepository<Car, string, CarsFilter>;
 
 public class ManageCarsPageViewModel : INotifyPropertyChanged {
-    private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
+    private readonly ICarsRepository _carsRepository = App.Instance.ServiceProvider.GetService<ICarsRepository>()!;
 
     public ManageCarsPageViewModel() {
+        Cars = GetCars();
+        OpenAddNewCarWindowCommand = new RelayCommand(ExecuteOpenAddNewCarWindowCommand, CanExecuteOpenAddNewCarWindowCommand);
+    }
+    
+    // this constructor is used for testing purposes
+    public ManageCarsPageViewModel(ICarsRepository carsRepository) {
+        _carsRepository = carsRepository;
         Cars = GetCars();
         OpenAddNewCarWindowCommand = new RelayCommand(ExecuteOpenAddNewCarWindowCommand, CanExecuteOpenAddNewCarWindowCommand);
     }

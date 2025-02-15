@@ -4,8 +4,8 @@ namespace LeasingCompanyMSTest.ViewModel;
 
 [TestClass]
 public class RelayCommandTest {
-    private bool _canExecuteCalled = false;
-    private bool _executeCalled = false;
+    private bool _canExecuteCalled;
+    private bool _executeCalled;
 
     [TestMethod]
     public void CanExecute_WhenCanExecuteActionIsNull_ThenReturnsTrue() {

@@ -5,21 +5,29 @@ using System.Windows.Input;
 using LeasingCompanyMS.Components.MainWindow;
 using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
+using LeasingCompanyMS.Pages.ClientsInformationPage.Components.CreateNewClientWindow;
 using LeasingCompanyMS.Pages.Components.NewClient;
 using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LeasingCompanyMS.Pages;
+namespace LeasingCompanyMS.Pages.ClientsInformationPage;
 
 using IUsersRepository = IRepository<User, string, UsersFilter>;
 
 public sealed class ClientsInformationPageViewModel : INotifyPropertyChanged {
-    private readonly IUsersRepository _usersRepository = App.ServiceProvider.GetService<IUsersRepository>()!;
+    private readonly IUsersRepository _usersRepository = App.Instance.ServiceProvider.GetService<IUsersRepository>()!;
     
     public ClientsInformationPageViewModel() {
         OpenCreateNewClientWindowCommand =
             new RelayCommand(ExecuteOpenNewClientWindowCommand, CanExecuteOpenNewClientWindowCommand);
-
+        Users = GetUsers();
+    }
+    
+    // This constructor is used for testing purposes
+    public ClientsInformationPageViewModel(IUsersRepository usersRepository) {
+        _usersRepository = usersRepository;
+        OpenCreateNewClientWindowCommand =
+            new RelayCommand(ExecuteOpenNewClientWindowCommand, CanExecuteOpenNewClientWindowCommand);
         Users = GetUsers();
     }
 

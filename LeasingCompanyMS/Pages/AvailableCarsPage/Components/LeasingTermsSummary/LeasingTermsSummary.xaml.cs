@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using LeasingCompanyMS.Model;
 
-namespace LeasingCompanyMS.Pages.Components.LeasingTermsSummary;
+namespace LeasingCompanyMS.Pages.AvailableCarsPage.Components.LeasingTermsSummary;
 
 public partial class LeasingTermsSummary {
     public static readonly DependencyProperty LeasingTermsProperty = DependencyProperty.Register(

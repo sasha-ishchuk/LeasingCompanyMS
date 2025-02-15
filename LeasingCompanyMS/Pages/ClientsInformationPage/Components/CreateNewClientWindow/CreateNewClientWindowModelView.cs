@@ -7,15 +7,22 @@ using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Guid;
 
-namespace LeasingCompanyMS.Pages.Components.NewClient;
+namespace LeasingCompanyMS.Pages.ClientsInformationPage.Components.CreateNewClientWindow;
 
 using IUsersRepository = IRepository<User, string, UsersFilter>;
 
 public class CreateNewClientWindowModelView : INotifyPropertyChanged {
-    private readonly IUsersRepository _usersRepository = App.ServiceProvider.GetService<IUsersRepository>()!;
+    private readonly IUsersRepository _usersRepository = App.Instance.ServiceProvider.GetService<IUsersRepository>()!;
     private readonly Action _closeWindowDelegate;
     
     public CreateNewClientWindowModelView(Action closeWindowDelegate) {
+        CreateNewClientCommand = new RelayCommand(ExecuteCreateNewClientCommand, CanExecuteCreateNewClientCommand);
+        _closeWindowDelegate = closeWindowDelegate;
+    }
+    
+    // This constructor is used for testing purposes
+    public CreateNewClientWindowModelView(Action closeWindowDelegate, IUsersRepository usersRepository) {
+        _usersRepository = usersRepository;
         CreateNewClientCommand = new RelayCommand(ExecuteCreateNewClientCommand, CanExecuteCreateNewClientCommand);
         _closeWindowDelegate = closeWindowDelegate;
     }

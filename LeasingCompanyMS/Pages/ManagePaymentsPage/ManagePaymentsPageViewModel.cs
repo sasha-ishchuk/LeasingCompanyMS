@@ -9,8 +9,8 @@ namespace LeasingCompanyMS.Pages.ManagePaymentsPage;
 using ICarsRepository = IRepository<Car, string, CarsFilter>;
 using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 public class ManagePaymentsPageViewModel : INotifyPropertyChanged {
-    private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
-    private readonly ILeasingsRepository _leasingsRepository = App.ServiceProvider.GetService<ILeasingsRepository>()!;
+    private readonly ICarsRepository _carsRepository = App.Instance.ServiceProvider.GetService<ICarsRepository>()!;
+    private readonly ILeasingsRepository _leasingsRepository = App.Instance.ServiceProvider.GetService<ILeasingsRepository>()!;
 
     public Leasing? Leasings {
         get {
