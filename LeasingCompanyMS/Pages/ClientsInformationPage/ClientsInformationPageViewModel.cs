@@ -6,7 +6,6 @@ using LeasingCompanyMS.Components.MainWindow;
 using LeasingCompanyMS.Model;
 using LeasingCompanyMS.Model.Repositories;
 using LeasingCompanyMS.Pages.ClientsInformationPage.Components.CreateNewClientWindow;
-using LeasingCompanyMS.Pages.Components.NewClient;
 using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 
