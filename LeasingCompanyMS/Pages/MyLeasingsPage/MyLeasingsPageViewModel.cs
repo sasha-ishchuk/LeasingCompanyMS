@@ -7,16 +7,16 @@ using LeasingCompanyMS.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Guid;
 
-namespace LeasingCompanyMS.Pages.ManagePaymentsPage;
+namespace LeasingCompanyMS.Pages.MyLeasingsPage;
 
 using ICarsRepository = IRepository<Car, string, CarsFilter>;
 using ILeasingsRepository = IRepository<Leasing, string, LeasingsFilter>;
 using IPaymentsRepository = IRepository<Payment, string, PaymentsFilter>;
 
 public sealed class MyLeasingsPageViewModel : INotifyPropertyChanged {
-    private readonly ICarsRepository _carsRepository = App.ServiceProvider.GetService<ICarsRepository>()!;
-    private readonly ILeasingsRepository _leasingsRepository = App.ServiceProvider.GetService<ILeasingsRepository>()!;
-    private readonly IPaymentsRepository _paymentsRepository = App.ServiceProvider.GetService<IPaymentsRepository>()!;
+    private readonly ICarsRepository _carsRepository = App.Instance.ServiceProvider.GetService<ICarsRepository>()!;
+    private readonly ILeasingsRepository _leasingsRepository = App.Instance.ServiceProvider.GetService<ILeasingsRepository>()!;
+    private readonly IPaymentsRepository _paymentsRepository = App.Instance.ServiceProvider.GetService<IPaymentsRepository>()!;
 
     private void ExecutePurchaseCarCommand(object parameter) {
         SelectedLeasing!.car!.Status = CarStatus.PurchasedByClient;

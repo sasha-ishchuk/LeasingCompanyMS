@@ -9,10 +9,22 @@
 
     <ItemGroup>
         <None Remove="Json\users_test.json"/>
+        <None Remove="Json\cars_test.json"/>
+        <None Remove="Json\leasings_test.json"/>
+        <None Remove="Json\payments_test.json"/>
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="Json\users_test.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Json\cars_test.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Json\leasings_test.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Json\payments_test.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>

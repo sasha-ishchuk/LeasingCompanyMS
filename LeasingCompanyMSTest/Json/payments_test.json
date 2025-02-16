@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "99a9fcdd-42b3-4df9-abff-1c70db3dcdc9",
+    "OrdinalNumber": 0,
+    "UserId": "0",
+    "CarId": "d5a6d106-5bda-4e57-9df7-5ac35e12d8de",
+    "LeasingId": "405a30ed-6e93-4d31-9205-723639a2d310",
+    "NetAmount": 13648,
+    "GrossAmount": 16787,
+    "IssueDate": "2025-02-03T00:49:17.0790515+01:00",
+    "DueDate": "2025-02-03T00:49:17.0791269+01:00",
+    "Status": 0
+  },
+  {
+    "Id": "875eef4d-d47b-430b-b32d-d0e1a3596a3d",
+    "OrdinalNumber": 0,
+    "UserId": "0",
+    "CarId": "d5a6d106-5bda-4e57-9df7-5ac35e12d8de",
+    "LeasingId": "405a30ed-6e93-4d31-9205-723639a2d310",
+    "NetAmount": 13648,
+    "GrossAmount": 16787.4705,
+    "IssueDate": "2025-02-03T00:49:17.081693+01:00",
+    "DueDate": "2025-03-03T00:49:17.0816947+01:00",
+    "Status": 0
+  }
+]
